@@ -2,7 +2,7 @@
 
 ### Project Description
 This is a Portfolio landing page built with Laravel, It has a full control panel to control content.
-[Recorded Video for the whole project](https://youtu.be/67eNtTWKtcc "Recorded Video for the whole project")
+
                 
 ### How to Install
 1. Clone the project
