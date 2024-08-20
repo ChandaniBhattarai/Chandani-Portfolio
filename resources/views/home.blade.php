@@ -26,7 +26,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 px-5 pl-lg-0 pb-5 pb-lg-0">
-                    <img class="img-fluid w-100 rounded-circle shadow-sm" src="{{ asset("storage/wallpaper.jpeg") }}" alt="">
+                    <img class="img-fluid  rounded-circle shadow-sm" src="{{ asset("storage/dd.jpeg") }}" alt="" style="height: 350px; width:90%">
                 </div>
                 <div class="col-lg-7 text-center text-lg-left">
                     <h3 class="text-white font-weight-normal mb-3">I'm</h3>
@@ -57,7 +57,7 @@
             </div>
             <div class="row align-items-center">
                 <div class="col-lg-5 pb-4 pb-lg-0">
-                    <img class="img-fluid rounded w-100" src="{{ asset("storage/wallpaper.jpeg") }}" alt="">
+                    <img class="img-fluid rounded w-100" src="{{ asset("storage/frontendd.jpg") }}" alt="">
                 </div>
                 <div class="col-lg-7">
                     <h3 class="mb-4">{{ $setting->about_title }}</h3>
