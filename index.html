@@ -24,6 +24,75 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="public/import/assets/css/style.css" rel="stylesheet">
+    <style>
+.cursor {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, rgba(255, 0, 150, 0.7), rgba(0, 204, 255, 0.7));
+    pointer-events: none;
+    transition: transform 0.1s ease-out, width 0.1s ease-out, height 0.1s ease-out;
+    z-index: 1000;
+    transform-origin: center;
+    animation: cursor-rotate 2s linear infinite;
+}
+
+.cursor-trail {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle);
+    pointer-events: none;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    z-index: 999;
+}
+
+@keyframes cursor-grow {
+    0% {
+        width: 20px;
+        height: 20px;
+    }
+    100% {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@keyframes cursor-shrink {
+    0% {
+        width: 30px;
+        height: 30px;
+    }
+    100% {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@keyframes cursor-trail {
+    0% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2);
+    }
+}
+
+@keyframes cursor-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+    </style>
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="51">
@@ -85,7 +154,7 @@
                     <p>I am an energetic and enthusiastic person who enjoys challenges and achieving personal goals. I believe that learning new skills and facing new challenges helps a person to grow. Every day is a new opportunity to learn and grow.</p>
                     <div class="row mb-3">
                         <div class="col-sm-6 py-2"><h6>Name: <span class="text-secondary">Chandani Bhattarai</span></h6></div>
-                        <div class="col-sm-6 py-2"><h6>Birthday: <span class="text-secondary">2002-09-06</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Date of Birth: <span class="text-secondary">2002-09-06</span></h6></div>
                         <div class="col-sm-6 py-2"><h6>Degree: <span class="text-secondary">BSc CSIT</span></h6></div>
                         <div class="col-sm-6 py-2"><h6>Experience: <span class="text-secondary">2 Years</span></h6></div>
                         <div class="col-sm-6 py-2"><h6>Phone: <span class="text-secondary">xxxxxxxxxx</span></h6></div>
@@ -296,7 +365,37 @@
     <!-- Contact Javascript File -->
     <script src="public/mail/jqBootstrapValidation.min.js"></script>
     <script src="public/import/assets/mail/contact.js"></script>
+    <script>
+        const cursor = document.createElement('div');
+        const cursorTrail = document.createElement('div');
+        cursor.classList.add('cursor');
+        cursorTrail.classList.add('cursor-trail');
+        document.body.appendChild(cursor);
+        document.body.appendChild(cursorTrail);
+        
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.pageX + 'px';
+            cursor.style.top = e.pageY + 'px';
+            cursorTrail.style.left = e.pageX + 'px';
+            cursorTrail.style.top = e.pageY + 'px';
+        });
+        
+        document.addEventListener('mousedown', () => {
+            cursor.style.animation = 'cursor-grow 0.2s forwards';
+            cursorTrail.style.animation = 'cursor-trail 0.5s ease-out';
+        });
+        
+        document.addEventListener('mouseup', () => {
+            cursor.style.animation = 'cursor-shrink 0.2s forwards';
+            cursorTrail.style.animation = '';
+        });
+        
+        document.addEventListener('click', () => {
+            cursorTrail.style.animation = 'cursor-trail 0.5s ease-out';
+        });
+        
 
+    </script>
     <!-- Template Javascript -->
     <script src="public/import/assets/js/main.js"></script>
     <!-- Back to Top Button -->
@@ -332,6 +431,7 @@
 }
 
 </style>
+
 </body>
 
 </html>
