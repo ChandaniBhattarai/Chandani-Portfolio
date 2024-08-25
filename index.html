@@ -303,14 +303,15 @@
                     <!-- Static Alert Message -->
                     <br>
                     <form id="contactForm">
-                        <div class="form-row d-flex">
+                        <div class="form-row">
                             <div class="control-group col-sm-6">
                                 <input type="text" class="form-control p-4" id="name" placeholder="Your Name" required />
                             </div>
+                            <br>
                             <div class="control-group col-sm-6">
                                 <input type="email" class="form-control p-4" id="email" placeholder="Your Email" required />
                             </div>
-                        </div>            </div>
+                        </div>
                         <br>
                         <div class="control-group">
                             <input type="text" class="form-control p-4" id="subject" placeholder="Subject" required />
@@ -320,7 +321,7 @@
                             <textarea class="form-control py-3 px-4" rows="5" id="message" placeholder="Message" required></textarea>
                         </div>
                         <br>
-                        <div class="button-container">
+                        <div>
                             <button class="btn btn-outline-primary" type="submit" id="sendMessageButton">Send Message</button>
                         </div>
                         <!-- Static Error Messages -->
@@ -430,31 +431,9 @@
 .back-to-top i {
     margin-top: 4px;
 }
-.form-row {
-    display: flex;
-    flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens */
-    gap: 20px; /* Default gap between items */
-}
-
-.control-group {
-    flex: 1; /* Ensures each input takes up equal space */
-}
-
-/* Responsive adjustments for mobile devices */
-@media (max-width: 768px) { /* Target screens 768px wide and smaller */
-    .form-row {
-        flex-direction: column; /* Stack items vertically */
-        gap: 15px; /* Adjust gap for smaller screens */
-    }
-}
-
-.button-container {
-    text-align: center; /* Centers the button horizontally */
-}
 
 </style>
 
-            
 </body>
 
 </html>
