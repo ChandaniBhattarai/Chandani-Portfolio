@@ -1,360 +1,1081 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="Official Website of Chandani Bhattarai">
-    <meta name="author" content="Chandani Bhattarai">
-    <meta name="keywords" content="Chandani Bhattarai, Software Developer, Portfolio">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="description" content="Official Website of Chandani Bhattarai" />
+    <meta name="author" content="Chandani Bhattarai" />
+    <meta
+      name="keywords"
+      content="Chandani Bhattarai, Software Developer, Portfolio"
+    />
     <!-- Favicon -->
-    <link href="public/import/assets/img/favicon.ico" rel="icon">
+    <link href="public/import/assets/img/favicon.ico" rel="icon" />
 
     <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      rel="stylesheet"
+    />
 
     <!-- Libraries Stylesheet -->
-    <link href="public/import/assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="public/import/assets/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link
+      href="public/import/assets/lib/owlcarousel/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="public/import/assets/lib/lightbox/css/lightbox.min.css"
+      rel="stylesheet"
+    />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="public/import/assets/css/style.css" rel="stylesheet">
+    <link href="public/import/assets/css/style.css" rel="stylesheet" />
     <style>
-.cursor {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, rgba(255, 0, 150, 0.7), rgba(0, 204, 255, 0.7));
-    pointer-events: none;
-    transition: transform 0.1s ease-out, width 0.1s ease-out, height 0.1s ease-out;
-    z-index: 1000;
-    transform-origin: center;
-    animation: cursor-rotate 2s linear infinite;
-}
-
-.cursor-trail {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: radial-gradient(circle);
-    pointer-events: none;
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-    z-index: 999;
-}
-
-@keyframes cursor-grow {
-    0% {
+      .cursor {
+        position: absolute;
         width: 20px;
         height: 20px;
-    }
-    100% {
-        width: 30px;
-        height: 30px;
-    }
-}
+        border-radius: 50%;
+        background: linear-gradient(
+          45deg,
+          rgba(224, 187, 228, 0.8),
+          rgba(210, 145, 188, 0.8)
+        );
+        pointer-events: none;
+        transition:
+          transform 0.1s ease-out,
+          width 0.1s ease-out,
+          height 0.1s ease-out;
+        z-index: 1000;
+        transform-origin: center;
+        animation: cursor-rotate 2s linear infinite;
+        box-shadow: 0 0 10px rgba(210, 145, 188, 0.6);
+      }
 
-@keyframes cursor-shrink {
-    0% {
-        width: 30px;
-        height: 30px;
-    }
-    100% {
-        width: 20px;
-        height: 20px;
-    }
-}
+      .cursor-trail {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(224, 187, 228, 0.6),
+          transparent
+        );
+        pointer-events: none;
+        transition:
+          transform 0.3s ease-out,
+          opacity 0.3s ease-out;
+        z-index: 999;
+      }
 
-@keyframes cursor-trail {
-    0% {
-        opacity: 0.6;
-        transform: translate(-50%, -50%) scale(1);
-    }
-    100% {
+      @keyframes cursor-grow {
+        0% {
+          width: 20px;
+          height: 20px;
+        }
+        100% {
+          width: 30px;
+          height: 30px;
+        }
+      }
+
+      @keyframes cursor-shrink {
+        0% {
+          width: 30px;
+          height: 30px;
+        }
+        100% {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      @keyframes cursor-trail {
+        0% {
+          opacity: 0.6;
+          transform: translate(-50%, -50%) scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(2);
+        }
+      }
+
+      @keyframes cursor-rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Pastel mauve / lavender theme */
+      :root {
+        --primary: #e0bbe4; /* lavender */
+        --secondary: #957dad; /* muted purple */
+        --accent: #d291bc; /* pale mauve */
+        --dark-accent: #701c97; /* deep purple */
+      }
+
+      body {
+        /* richer multi-stop gradient for more movement and contrast */
+        background: linear-gradient(
+          135deg,
+          #e0bbe4 0%,
+          #957dad 40%,
+          #d291bc 70%,
+          #e0bbe4 100%
+        );
+        background-size: 400% 400%;
+        animation: bg-animation 30s ease infinite;
+        cursor: none;
+        /* make default text light so it stands out on peach backgrounds */
+        color: #ffffff;
+        scroll-behavior: smooth;
+      }
+
+      .navbar {
+        background: rgba(224, 187, 228, 0.15) !important;
+        backdrop-filter: blur(10px);
+        transition:
+          background 0.3s,
+          backdrop-filter 0.3s,
+          transform 0.3s,
+          opacity 0.3s;
+        color: #333;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        /* always visible */
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .navbar .nav-link {
+        color: #333 !important;
+        transition:
+          color 0.3s,
+          transform 0.3s;
+        position: relative;
+      }
+      .navbar .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent);
+        transition: width 0.3s;
+      }
+      .navbar .nav-link.active,
+      .navbar .nav-link:hover {
+        color: var(--accent) !important;
+        transform: translateY(-2px) scale(1.05);
+      }
+      .navbar .nav-link:hover::after {
+        width: 100%;
+      }
+      .navbar-brand {
+        transition: transform 0.3s;
+      }
+      .navbar-brand:hover {
+        transform: scale(1.05);
+      }
+      .navbar:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .bg-primary {
+        background: linear-gradient(
+          135deg,
+          #e0bbe4 0%,
+          #957dad 100%
+        ) !important;
+      }
+
+      /* light overlay on full-width containers for readability */
+      .container-fluid {
+        background-color: rgba(255, 255, 255, 0.12);
+      }
+      .skill h6 {
+        color: #fff !important;
+      }
+
+      /* progress container contrast */
+      .progress {
+        background: rgba(255, 255, 255, 0.25) !important;
+      }
+
+      .text-secondary {
+        color: rgba(255, 255, 255, 0.85) !important;
+      }
+
+      .text-primary {
+        color: #701c97 !important;
+      }
+
+      .btn-premium {
+        background: linear-gradient(135deg, #957dad, #d291bc) !important;
+        color: #fff !important;
+        border: none !important;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+        background-size: 200% 200%;
+        animation: btn-grad 8s ease infinite;
+      }
+      .btn-premium:hover {
+        transform: scale(1.05);
+        background: linear-gradient(135deg, #d291bc, #701c97) !important;
+        box-shadow: 0 0 25px rgba(112, 28, 151, 0.6) !important;
+      }
+      @keyframes btn-grad {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      /* social icon buttons glow */
+      .btn-social {
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+      .btn-social:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px var(--accent);
+      }
+      /* global link glow on hover */
+      a:hover {
+        text-shadow: 0 0 8px var(--accent);
+      }
+
+      /* typed text glow */
+      .typed-text-output {
+        color: #fff;
+        text-shadow: 0 0 8px var(--accent);
+      }
+      .progress-bar:hover {
+        box-shadow: 0 0 10px var(--accent);
+        transform: scaleY(1.05);
+      }
+      .progress-bar {
+        background: linear-gradient(
+          90deg,
+          #957dad 0%,
+          #701c97 50%,
+          #d291bc 100%
+        ) !important;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      }
+
+      .glow-text {
+        color: #701c97;
+        text-shadow:
+          0 0 10px rgba(112, 28, 151, 0.6),
+          0 0 20px rgba(210, 145, 188, 0.4);
+        animation: text-glow 3s ease-in-out infinite;
+      }
+      @keyframes text-glow {
+        0%,
+        100% {
+          text-shadow: 0 0 10px rgba(155, 123, 168, 0.6);
+        }
+        50% {
+          text-shadow: 0 0 20px rgba(237, 170, 139, 0.8);
+        }
+      }
+
+      .back-to-top {
+        background: linear-gradient(135deg, #d291bc, #957dad) !important;
+        box-shadow:
+          0 0 15px rgba(0, 0, 0, 0.2),
+          0 0 25px rgba(112, 28, 151, 0.6) !important;
+      }
+
+      .back-to-top:hover {
+        background: linear-gradient(135deg, #957dad, #701c97) !important;
+      }
+
+      .navbar-nav .nav-link::after {
+        background: #7b5a8b;
+      }
+      /* animated gradient background */
+      @keyframes bg-animation {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .bg-animated {
+        background: linear-gradient(
+          45deg,
+          var(--primary),
+          var(--secondary),
+          var(--accent),
+          var(--dark-accent)
+        );
+        background-size: 400% 400%;
+        animation: bg-animation 20s ease infinite;
+      }
+
+      /* floating shapes in hero */
+      .floating-shape {
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        background: radial-gradient(
+          circle at center,
+          rgba(224, 187, 228, 0.4),
+          transparent 70%
+        );
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+        top: 10%;
+        left: 80%;
+        pointer-events: none;
+      }
+      .float-img {
+        animation: float 6s ease-in-out infinite;
+        transition: transform 0.5s ease;
+      }
+      .float-img:hover {
+        transform: translateY(-10px) scale(1.02);
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(20px, -20px);
+        }
+      }
+
+      /* enhanced nav link hover underline */
+      .navbar-nav .nav-link {
+        position: relative;
+        transition: color 0.3s;
+      }
+      .navbar-nav .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 0;
+        height: 2px;
+        background: var(--accent);
+        transition: width 0.4s ease;
+      }
+      .navbar-nav .nav-link:hover::after {
+        width: 100%;
+      }
+      .navbar-nav .nav-link:hover {
+        color: var(--accent) !important;
+        text-shadow: 0 0 6px var(--accent);
+      }
+
+      /* premium button shine */
+      .btn-premium {
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s;
+      }
+      .btn-premium::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle at center,
+          rgba(255, 255, 255, 0.6),
+          transparent 70%
+        );
         opacity: 0;
-        transform: translate(-50%, -50%) scale(2);
-    }
-}
+        transition:
+          opacity 0.3s,
+          transform 0.5s;
+      }
+      .btn-premium:hover {
+        transform: translateY(-3px);
+      }
+      .btn-premium:hover::before {
+        opacity: 1;
+        transform: scale(0);
+      }
 
-@keyframes cursor-rotate {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
+      /* gradient animated skill bars */
+      .progress-bar {
+        background: linear-gradient(
+          90deg,
+          #957dad 0%,
+          #701c97 50%,
+          #d291bc 100%
+        );
+        background-size: 200% 100%;
+        animation: progress-animation 2s ease forwards;
+      }
+      @keyframes progress-animation {
+        from {
+          background-position: 100% 0;
+        }
+        to {
+          background-position: 0 0;
+        }
+      }
 
+      /* reveal animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 1s ease,
+          transform 1s ease;
+      }
+      .reveal[data-delay] {
+        transition-delay: var(--delay);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
+      /* global smooth transition helper */
+      .smooth-transition {
+        transition: all 0.4s ease;
+      }
+
+      /* heading glow animation */
+      .display-4 {
+        animation: heading-glow 6s ease-in-out infinite;
+      }
+      @keyframes heading-glow {
+        0%,
+        100% {
+          filter: drop-shadow(0 0 5px var(--accent));
+        }
+        50% {
+          filter: drop-shadow(0 0 15px var(--secondary));
+        }
+      }
+
+      /* typed text color cycle */
+      .typed-text-output {
+        animation: typed-color 5s infinite;
+      }
+      @keyframes typed-color {
+        0% {
+          color: #fff;
+        }
+        50% {
+          color: var(--secondary);
+        }
+        100% {
+          color: #fff;
+        }
+      }
+
+      /* floating back-to-top */
+      .back-to-top {
+        animation: floatButton 3s ease-in-out infinite;
+        background: linear-gradient(135deg, #d291bc, #957dad) !important;
+      }
+      @keyframes floatButton {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+      }
     </style>
-</head>
+  </head>
 
-<body data-spy="scroll" data-target=".navbar" data-offset="51">
+  <body data-spy="scroll" data-target=".navbar" data-offset="51">
     <!-- Navbar Start -->
-    <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-lg-5">
-        <a href="index.html" class="navbar-brand ml-lg-3">
-            <h1 class="m-0 display-5"><span class="text-primary">Chandani</span> Bhattarai</h1>
-        </a>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse px-lg-3" id="navbarCollapse">
-            <div class="navbar-nav m-auto py-0">
-                <a href="#home" class="nav-item nav-link active">Home</a>
-                <a href="#about" class="nav-item nav-link">About</a>
-                <a href="#qualification" class="nav-item nav-link">Credential</a>
-                <a href="#skill" class="nav-item nav-link">Skill</a>
-                <a href="#contact" class="nav-item nav-link">Contact</a>
-            </div>
-            <a  href="CV..pdf" class="btn btn-outline-primary d-none d-lg-block">Hire Me</a>
+    <nav
+      class="navbar fixed-top shadow-sm navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-lg-5"
+    >
+      <a href="index.html" class="navbar-brand ml-lg-3">
+        <h1 class="m-0 display-5">
+          <span class="text-primary">Chandani</span> Bhattarai
+        </h1>
+      </a>
+      <button
+        type="button"
+        class="navbar-toggler"
+        data-toggle="collapse"
+        data-target="#navbarCollapse"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse px-lg-3" id="navbarCollapse">
+        <div class="navbar-nav m-auto py-0">
+          <a href="#home" class="nav-item nav-link active">Home</a>
+          <a href="#about" class="nav-item nav-link">About</a>
+          <a href="#qualification" class="nav-item nav-link">Credential</a>
+          <a href="#skill" class="nav-item nav-link">Skill</a>
+          <a href="#contact" class="nav-item nav-link">Contact</a>
         </div>
+        <a class="btn btn-premium d-none d-lg-block">Hire Me</a>
+      </div>
     </nav>
     <!-- Navbar End -->
 
     <!-- Header Starts -->
-    <div class="container-fluid bg-primary d-flex align-items-center mb-5 py-5" id="home" style="min-height: 100vh;">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-5 px-5 pl-lg-0 pb-5 pb-lg-0">
-                    <img class="img-fluid rounded-circle shadow-sm" src="dd.jpeg" alt="" style=" width: 90%;">
-                </div>
-                <div class="col-lg-7 text-center text-lg-left">
-                    <h3 class="text-white font-weight-normal mb-3">I'm</h3>
-                    <h1 class="display-4 text-uppercase text-primary mb-2" style="-webkit-text-stroke: 2px #ffffff;">Chandani Bhattarai</h1>
-                    <h1 class="typed-text-output d-inline font-weight-lighter text-white"></h1>
-                    <div class="typed-text d-none">Software Developer</div> 
-                    <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
-                        <a href="CV..pdf" class="btn btn-outline-light mr-5">Download CV</a>
-                    </div>
-                </div>
+    <div
+      class="container-fluid bg-primary d-flex align-items-center mb-5 py-5 bg-animated reveal"
+      id="home"
+      data-delay="0"
+      style="min-height: 100vh; position: relative; overflow: hidden"
+    >
+      <!-- floating background shapes -->
+      <div class="floating-shape"></div>
+      <div
+        class="floating-shape"
+        style="
+          width: 100px;
+          height: 100px;
+          top: 60%;
+          left: 20%;
+          animation-duration: 8s;
+        "
+      ></div>
+      <div
+        class="floating-shape"
+        style="
+          width: 200px;
+          height: 200px;
+          top: 80%;
+          left: 50%;
+          animation-duration: 10s;
+        "
+      ></div>
+      <div class="container">
+        <div class="row align-items-center">
+          <div
+            class="col-lg-5 px-5 pl-lg-0 pb-5 pb-lg-0 reveal"
+            data-delay="100"
+          >
+            <img
+              class="img-fluid rounded-circle shadow-sm float-img"
+              src="profile.jpeg"
+              alt=""
+              style="width: 90%"
+            />
+          </div>
+          <div
+            class="col-lg-7 text-center text-lg-left reveal"
+            data-delay="300"
+          >
+            <h3 class="text-white font-weight-normal mb-3">I'm</h3>
+            <h1
+              class="display-4 text-uppercase text-primary mb-2 glow-text"
+              style="-webkit-text-stroke: 2px #ffffff"
+            >
+              Chandani Bhattarai
+            </h1>
+            <h1
+              class="typed-text-output d-inline font-weight-lighter text-white"
+            ></h1>
+            <div class="typed-text d-none">Full Stack Developer</div>
+            <div
+              class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5"
+            >
+              <a href="CV..pdf" class="btn btn-premium mr-5">Download CV</a>
             </div>
+          </div>
         </div>
+      </div>
     </div>
     <!-- Header End -->
 
     <!-- About Start -->
-    <div class="container-fluid py-5" id="about">
-        <div class="container">
-            <div class="position-relative d-flex align-items-center justify-content-center">
-                <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">About</h1>
-                <h1 class="position-absolute text-uppercase text-primary">About Me</h1>
-            </div>
-            <div class="row align-items-center">
-                <div class="col-lg-5 pb-4 pb-lg-0">
-                    <img class="img-fluid rounded w-100" src="frontendd.jpg" alt="">
-                </div>
-                <div class="col-lg-7">
-
-                    <p>I am an energetic and enthusiastic person who enjoys challenges and achieving personal goals. I believe that learning new skills and facing new challenges helps a person to grow. Every day is a new opportunity to learn and grow.</p>
-                    <div class="row mb-3">
-                        <div class="col-sm-6 py-2"><h6>Name: <span class="text-secondary">Chandani Bhattarai</span></h6></div>
-                        <div class="col-sm-6 py-2"><h6>Date of Birth: <span class="text-secondary">2002-09-06</span></h6></div>
-                        <div class="col-sm-6 py-2"><h6>Degree: <span class="text-secondary">BSc CSIT</span></h6></div>
-                        <div class="col-sm-6 py-2"><h6>Experience: <span class="text-secondary">2 Years</span></h6></div>
-                        <div class="col-sm-6 py-2"><h6>Phone: <span class="text-secondary">xxxxxxxxxx</span></h6></div>
-                        <div class="col-sm-6 py-2"><h6>Email: <span class="text-secondary">chandanibhattarai123@gmail.com</span></h6></div>
-                        <div class="col-sm-6 py-2"><h6>Address: <span class="text-secondary">Kathmandu, Nepal</span></h6></div>
-                        <div class="col-sm-6 py-2"><h6>Freelance: <span class="text-secondary">Available</span></h6></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- About End -->
-    <div class="container-fluid py-5" id="qualification">
-        <div class="container">
-            <div class="position-relative d-flex align-items-center justify-content-center">
-                <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Credential</h1>
-                <h1 class="position-absolute text-uppercase text-primary">Education & Experience</h1>
-            </div>
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h3 class="mb-4">My Education</h3>
-                    <div class="border-left border-primary pt-2 pl-4 ml-2">
-                        <!-- Static Education Entries -->
-                        <div class="position-relative mb-4">
-                            <i class="far fa-dot-circle text-primary position-absolute" style="top: 2px; left: -32px;"></i>
-                            <h5 class="font-weight-bold mb-1">Bsc CSIT</h5>
-                            <p class="mb-2"><strong>Padmakanya Multiple College</strong> | <small>2019 - 2024</small></p>
-                            <p>Bagbazar, Kathmandu</p>
-                        </div>
-                        <div class="position-relative mb-4">
-                            <i class="far fa-dot-circle text-primary position-absolute" style="top: 2px; left: -32px;"></i>
-                            <h5 class="font-weight-bold mb-1">Intermediate +2 in Science</h5>
-                            <p class="mb-2"><strong>Trinity International College</strong> | <small>2017 - 2019</small></p>
-                            <p>Dillibazar, Kathmandu</p>
-                        </div>
-                        <div class="position-relative mb-4">
-                            <i class="far fa-dot-circle text-primary position-absolute" style="top: 2px; left: -32px;"></i>
-                            <h5 class="font-weight-bold mb-1">SEE</h5>
-                            <p class="mb-2"><strong>Shree Rumjatar Higher Secondary School</strong> | <small>2016 - 2017</small></p>
-                            <p>Rumjatar, Okhaldhunga</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <h3 class="mb-4">My Experience</h3>
-                    <div class="border-left border-primary pt-2 pl-4 ml-2">
-                        <!-- Static Experience Entries -->
-                        <div class="position-relative mb-4">
-                            <i class="far fa-dot-circle text-primary position-absolute" style="top: 2px; left: -32px;"></i>
-                            <h5 class="font-weight-bold mb-1">Junior Software Developer</h5>
-                            <p class="mb-2"><strong>Shangrila Informatics Pvt. Ltd.</strong> | <small>September 2023 - Present</small></p>
-                            <p>Developed E-office digital government software, NT vacancy software for Nepal Telecom, and software for Rastriya Prajatrantra Party. Integrated APIs and payment gateways such as Khalti and E-sewa.</p>
-                        </div>
-                        <div class="position-relative mb-4">
-                            <i class="far fa-dot-circle text-primary position-absolute" style="top: 2px; left: -32px;"></i>
-                            <h5 class="font-weight-bold mb-1">Software Developer Intern</h5>
-                            <p class="mb-2"><strong>Shangrila Informatics Pvt. Ltd.</strong> | <small>March - September 2023</small></p>
-                            <p>Built custom Laravel plugins, resolved software issues, and managed PostgreSQL, Click-up, and GitLab tools.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-<!-- Skill Start -->
-<div class="container-fluid py-5" id="skill">
-    <div class="container">
-        <div class="position-relative d-flex align-items-center justify-content-center">
-            <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Skills</h1>
-            <h1 class="position-absolute text-uppercase text-primary">My Skills</h1>
+    <div class="container-fluid py-5 reveal" id="about" data-delay="200">
+      <div class="container">
+        <div
+          class="position-relative d-flex align-items-center justify-content-center"
+        >
+          <h1
+            class="display-1 text-uppercase text-white"
+            style="-webkit-text-stroke: 1px #dee2e6"
+          >
+            About
+          </h1>
+          <h1 class="position-absolute text-uppercase text-primary">
+            About Me
+          </h1>
         </div>
         <div class="row align-items-center">
-            <div class="col-md-6">
-                <div class="skill mb-4">
-                    <div class="d-flex justify-content-between">
-                        <h6 class="font-weight-bold">HTML</h6>
-                        <h6 class="font-weight-bold">80%</h6>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%; background-color: #007bff;"></div>
-                    </div>
-                </div>
-                <div class="skill mb-4">
-                    <div class="d-flex justify-content-between">
-                        <h6 class="font-weight-bold">Java</h6>
-                        <h6 class="font-weight-bold">40%</h6>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%; background-color: #28a745;"></div>
-                    </div>
-                </div>
-                <div class="skill mb-4">
-                    <div class="d-flex justify-content-between">
-                        <h6 class="font-weight-bold">CSS</h6>
-                        <h6 class="font-weight-bold">50%</h6>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%; background-color: #17a2b8;"></div>
-                    </div>
-                </div>
+          <div class="col-lg-5 pb-4 pb-lg-0">
+            <img class="img-fluid rounded w-100" src="frontendd.jpg" alt="" />
+          </div>
+          <div class="col-lg-7">
+            <p>
+              I am an energetic and enthusiastic person who enjoys challenges
+              and achieving personal goals. I believe that learning new skills
+              and facing new challenges helps a person to grow. Every day is a
+              new opportunity to learn and grow.
+            </p>
+            <div class="row mb-3">
+              <div class="col-sm-6 py-2">
+                <h6>
+                  Name: <span class="text-secondary">Chandani Bhattarai</span>
+                </h6>
+              </div>
+              <div class="col-sm-6 py-2">
+                <h6>
+                  Date of Birth: <span class="text-secondary">2002-09-06</span>
+                </h6>
+              </div>
+              <div class="col-sm-6 py-2">
+                <h6>Degree: <span class="text-secondary">BSc CSIT</span></h6>
+              </div>
+              <div class="col-sm-6 py-2">
+                <h6>Experience: <span class="text-secondary">3 Years</span></h6>
+              </div>
+              <div class="col-sm-6 py-2">
+                <h6>Phone: <span class="text-secondary">xxxxxxxxxx</span></h6>
+              </div>
+              <div class="col-sm-6 py-2">
+                <h6>
+                  Email:
+                  <span class="text-secondary"
+                    >chandanibhattarai123@gmail.com</span
+                  >
+                </h6>
+              </div>
+              <div class="col-sm-6 py-2">
+                <h6>
+                  Address: <span class="text-secondary">Kathmandu, Nepal</span>
+                </h6>
+              </div>
+              <div class="col-sm-6 py-2">
+                <h6>
+                  Freelance: <span class="text-secondary">Available</span>
+                </h6>
+              </div>
             </div>
-            <div class="col-md-6">
-                <div class="skill mb-4">
-                    <div class="d-flex justify-content-between">
-                        <h6 class="font-weight-bold">Laravel</h6>
-                        <h6 class="font-weight-bold">70%</h6>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%; background-color: #dc3545;"></div>
-                    </div>
-                </div>
-                <div class="skill mb-4">
-                    <div class="d-flex justify-content-between">
-                        <h6 class="font-weight-bold">JavaScript</h6>
-                        <h6 class="font-weight-bold">50%</h6>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%; background-color: #ffc107;"></div>
-                    </div>
-                </div>
-                <div class="skill mb-4">
-                    <div class="d-flex justify-content-between">
-                        <h6 class="font-weight-bold">Other Skills (PostgreSQL, MySQL, Git)</h6>
-                        <h6 class="font-weight-bold">70%</h6>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%; background-color: #6f42c1;"></div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+    <!-- About End -->
+    <div
+      class="container-fluid py-5 reveal"
+      id="qualification"
+      data-delay="400"
+    >
+      <div class="container">
+        <div
+          class="position-relative d-flex align-items-center justify-content-center"
+        >
+          <h1
+            class="display-1 text-uppercase text-white"
+            style="-webkit-text-stroke: 1px #dee2e6"
+          >
+            Credential
+          </h1>
+          <h1 class="position-absolute text-uppercase text-primary">
+            Education & Experience
+          </h1>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h3 class="mb-4">My Education</h3>
+            <div class="border-left border-primary pt-2 pl-4 ml-2">
+              <!-- Static Education Entries -->
+              <div class="position-relative mb-4">
+                <i
+                  class="far fa-dot-circle text-primary position-absolute"
+                  style="top: 2px; left: -32px"
+                ></i>
+                <h5 class="font-weight-bold mb-1">MIT</h5>
+                <p class="mb-2">
+                  <strong>Kist College</strong> |
+                  <small>2025 - Present</small>
+                </p>
+                <p>Kamalpokhari, Kathmandu</p>
+              </div>
+              <div class="position-relative mb-4">
+                <i
+                  class="far fa-dot-circle text-primary position-absolute"
+                  style="top: 2px; left: -32px"
+                ></i>
+                <h5 class="font-weight-bold mb-1">Bsc CSIT</h5>
+                <p class="mb-2">
+                  <strong>Padmakanya Multiple College</strong> |
+                  <small>2019 - 2024</small>
+                </p>
+                <p>Bagbazar, Kathmandu</p>
+              </div>
+              <div class="position-relative mb-4">
+                <i
+                  class="far fa-dot-circle text-primary position-absolute"
+                  style="top: 2px; left: -32px"
+                ></i>
+                <h5 class="font-weight-bold mb-1">
+                  Intermediate +2 in Science
+                </h5>
+                <p class="mb-2">
+                  <strong>Trinity International College</strong> |
+                  <small>2017 - 2019</small>
+                </p>
+                <p>Dillibazar, Kathmandu</p>
+              </div>
+              <div class="position-relative mb-4">
+                <i
+                  class="far fa-dot-circle text-primary position-absolute"
+                  style="top: 2px; left: -32px"
+                ></i>
+                <h5 class="font-weight-bold mb-1">SEE</h5>
+                <p class="mb-2">
+                  <strong>Shree Rumjatar Higher Secondary School</strong> |
+                  <small>2016 - 2017</small>
+                </p>
+                <p>Rumjatar, Okhaldhunga</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <h3 class="mb-4">My Experience</h3>
+            <div class="border-left border-primary pt-2 pl-4 ml-2">
+              <!-- Static Experience Entries -->
+              <div class="position-relative mb-4">
+                <i
+                  class="far fa-dot-circle text-primary position-absolute"
+                  style="top: 2px; left: -32px"
+                ></i>
+                <h5 class="font-weight-bold mb-1">Full Stack Developer</h5>
+                <p class="mb-2">
+                  <strong>UNO Technology</strong> |
+                  <small>December 2024 - Present</small>
+                </p>
+                <p>
+                  Developed scalable web applications using Laravel in both solo
+                  and team projects, with working knowledge of Vue.js.
+                  Implemented Stripe payments, real-time and Firebase
+                  notifications, REST APIs, and secure authentication. Managed
+                  AWS EC2 deployment and optimized performance using modern
+                  JavaScript and database best practices.
+                </p>
+              </div>
+              <div class="position-relative mb-4">
+                <i
+                  class="far fa-dot-circle text-primary position-absolute"
+                  style="top: 2px; left: -32px"
+                ></i>
+                <h5 class="font-weight-bold mb-1">Backend Developer</h5>
+                <p class="mb-2">
+                  <strong>Shangrila Informatics Pvt. Ltd.</strong> |
+                  <small>September 2023 - December 2024</small>
+                </p>
+                <p>
+                  Developed E-office digital government software, NT vacancy
+                  software for Nepal Telecom, and software for Rastriya
+                  Prajatrantra Party. Integrated APIs and payment gateways such
+                  as Khalti and E-sewa.
+                </p>
+              </div>
+              <div class="position-relative mb-4">
+                <i
+                  class="far fa-dot-circle text-primary position-absolute"
+                  style="top: 2px; left: -32px"
+                ></i>
+                <h5 class="font-weight-bold mb-1">Software Developer Intern</h5>
+                <p class="mb-2">
+                  <strong>Shangrila Informatics Pvt. Ltd.</strong> |
+                  <small>March - September 2023</small>
+                </p>
+                <p>
+                  Built custom Laravel plugins, resolved software issues, and
+                  managed PostgreSQL, Click-up, and GitLab tools.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<!-- Contact Start -->
-<div class="container-fluid py-5" id="contact">
-    <div class="container">
-        <div class="position-relative d-flex align-items-center justify-content-center">
-            <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Contact</h1>
-            <h1 class="position-absolute text-uppercase text-primary">Contact Me</h1>
+    <!-- Skill Start -->
+    <div class="container-fluid py-5 reveal" id="skill" data-delay="600">
+      <div class="container">
+        <div
+          class="position-relative d-flex align-items-center justify-content-center"
+        >
+          <h1
+            class="display-1 text-uppercase text-white"
+            style="-webkit-text-stroke: 1px #dee2e6"
+          >
+            Skills
+          </h1>
+          <h1 class="position-absolute text-uppercase text-primary">
+            My Skills
+          </h1>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <div class="skill mb-4">
+              <div class="d-flex justify-content-between">
+                <h6 class="font-weight-bold">HTML</h6>
+                <h6 class="font-weight-bold">80%</h6>
+              </div>
+              <div class="progress">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  aria-valuenow="80"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 80%; background-color: #007bff"
+                ></div>
+              </div>
+            </div>
+            <div class="skill mb-4">
+              <div class="d-flex justify-content-between">
+                <h6 class="font-weight-bold">Java</h6>
+                <h6 class="font-weight-bold">40%</h6>
+              </div>
+              <div class="progress">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  aria-valuenow="40"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 40%; background-color: #28a745"
+                ></div>
+              </div>
+            </div>
+            <div class="skill mb-4">
+              <div class="d-flex justify-content-between">
+                <h6 class="font-weight-bold">CSS</h6>
+                <h6 class="font-weight-bold">50%</h6>
+              </div>
+              <div class="progress">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  aria-valuenow="50"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 50%; background-color: #17a2b8"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="skill mb-4">
+              <div class="d-flex justify-content-between">
+                <h6 class="font-weight-bold">Laravel</h6>
+                <h6 class="font-weight-bold">70%</h6>
+              </div>
+              <div class="progress">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  aria-valuenow="70"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 70%; background-color: #dc3545"
+                ></div>
+              </div>
+            </div>
+            <div class="skill mb-4">
+              <div class="d-flex justify-content-between">
+                <h6 class="font-weight-bold">JavaScript</h6>
+                <h6 class="font-weight-bold">50%</h6>
+              </div>
+              <div class="progress">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  aria-valuenow="50"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 50%; background-color: #ffc107"
+                ></div>
+              </div>
+            </div>
+            <div class="skill mb-4">
+              <div class="d-flex justify-content-between">
+                <h6 class="font-weight-bold">
+                  Other Skills (PostgreSQL, MySQL, Git)
+                </h6>
+                <h6 class="font-weight-bold">70%</h6>
+              </div>
+              <div class="progress">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  aria-valuenow="70"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 70%; background-color: #6f42c1"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Start -->
+    <div class="container-fluid py-5 reveal" id="contact" data-delay="800">
+      <div class="container">
+        <div
+          class="position-relative d-flex align-items-center justify-content-center"
+        >
+          <h1
+            class="display-1 text-uppercase text-white"
+            style="-webkit-text-stroke: 1px #dee2e6"
+          >
+            Contact
+          </h1>
+          <h1 class="position-absolute text-uppercase text-primary">
+            Contact Me
+          </h1>
         </div>
         <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="contact-form text-center">
-                    <!-- Static Alert Message -->
-                    <br>
-                    <form id="contactForm">
-                        <div class="form-row">
-                            <div class="control-group col-sm-6">
-                                <input type="text" class="form-control p-4" id="name" placeholder="Your Name" required />
-                            </div>
-                            <br>
-                            <div class="control-group col-sm-6">
-                                <input type="email" class="form-control p-4" id="email" placeholder="Your Email" required />
-                            </div>
-                        </div>
-                        <br>
-                        <div class="control-group">
-                            <input type="text" class="form-control p-4" id="subject" placeholder="Subject" required />
-                        </div>
-                        <br>
-                        <div class="control-group">
-                            <textarea class="form-control py-3 px-4" rows="5" id="message" placeholder="Message" required></textarea>
-                        </div>
-                        <br>
-                        <div>
-                            <button class="btn btn-outline-primary" type="submit" id="sendMessageButton">Send Message</button>
-                        </div>
-                        <!-- Static Error Messages -->
-                        <br>
-                    </form>
+          <div class="col-lg-8">
+            <div class="contact-form text-center">
+              <!-- Static Alert Message -->
+              <br />
+              <form id="contactForm">
+                <div class="form-row">
+                  <div class="control-group col-sm-6">
+                    <input
+                      type="text"
+                      class="form-control p-4"
+                      id="name"
+                      placeholder="Your Name"
+                      required
+                    />
+                  </div>
+                  <br />
+                  <div class="control-group col-sm-6">
+                    <input
+                      type="email"
+                      class="form-control p-4"
+                      id="email"
+                      placeholder="Your Email"
+                      required
+                    />
+                  </div>
                 </div>
+                <br />
+                <div class="control-group">
+                  <input
+                    type="text"
+                    class="form-control p-4"
+                    id="subject"
+                    placeholder="Subject"
+                    required
+                  />
+                </div>
+                <br />
+                <div class="control-group">
+                  <textarea
+                    class="form-control py-3 px-4"
+                    rows="5"
+                    id="message"
+                    placeholder="Message"
+                    required
+                  ></textarea>
+                </div>
+                <br />
+                <div>
+                  <button
+                    class="btn btn-premium"
+                    type="submit"
+                    id="sendMessageButton"
+                  >
+                    Send Message
+                  </button>
+                </div>
+                <!-- Static Error Messages -->
+                <br />
+              </form>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-<!-- Contact End -->
-<div class="container-fluid bg-primary text-white mt-5 py-5 px-sm-3 px-md-5">
-    <div class="container text-center py-5">
+    <!-- Contact End -->
+    <div
+      class="container-fluid bg-primary text-white mt-5 py-5 px-sm-3 px-md-5"
+    >
+      <div class="container text-center py-5">
         <div class="d-flex justify-content-center mb-4">
-            <a class="btn btn-light btn-social mr-2" href="https://www.github.com" target="_blank"><i class="fab fa-github"></i></a>
-            <a class="btn btn-light btn-social mr-2" href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a class="btn btn-light btn-social mr-2" href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a class="btn btn-light btn-social mr-2" href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-        </div>        
-        <div class="d-flex justify-content-center mb-3">
-            <a class="text-white" href="#">Privacy</a>
-            <span class="px-3">|</span>
-            <a class="text-white" href="#">Terms</a>
-            <span class="px-3">|</span>
-            <a class="text-white" href="#">FAQs</a>
-            <span class="px-3">|</span>
-            <a class="text-white" href="#">Help</a>
+          <a
+            class="btn btn-light btn-social mr-2"
+            href="https://www.github.com"
+            target="_blank"
+            ><i class="fab fa-github"></i
+          ></a>
+          <a
+            class="btn btn-light btn-social mr-2"
+            href="https://www.facebook.com"
+            target="_blank"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a
+            class="btn btn-light btn-social mr-2"
+            href="https://www.instagram.com"
+            target="_blank"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a
+            class="btn btn-light btn-social mr-2"
+            href="https://www.linkedin.com"
+            target="_blank"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
         </div>
-        <p class="m-0">&copy; <a class="text-white font-weight-bold" href="#">2024@</a>All Rights Reserved.
-            <a class="text-white font-weight-bold">Created by Chandani Bhattarai</a> &#10084;
-        </p>            
+        <div class="d-flex justify-content-center mb-3">
+          <a class="text-white" href="#">Privacy</a>
+          <span class="px-3">|</span>
+          <a class="text-white" href="#">Terms</a>
+          <span class="px-3">|</span>
+          <a class="text-white" href="#">FAQs</a>
+          <span class="px-3">|</span>
+          <a class="text-white" href="#">Help</a>
+        </div>
+        <p class="m-0">
+          &copy; <a class="text-white font-weight-bold" href="#">2024@</a>All
+          Rights Reserved.
+          <a class="text-white font-weight-bold"
+            >Created by Chandani Bhattarai</a
+          >
+          &#10084;
+        </p>
+      </div>
     </div>
-</div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="public/import/assets/lib/typed/typed.min.js"></script>
@@ -368,72 +1089,122 @@
     <script src="public/mail/jqBootstrapValidation.min.js"></script>
     <script src="public/import/assets/mail/contact.js"></script>
     <script>
-        const cursor = document.createElement('div');
-        const cursorTrail = document.createElement('div');
-        cursor.classList.add('cursor');
-        cursorTrail.classList.add('cursor-trail');
-        document.body.appendChild(cursor);
-        document.body.appendChild(cursorTrail);
-        
-        document.addEventListener('mousemove', e => {
-            cursor.style.left = e.pageX + 'px';
-            cursor.style.top = e.pageY + 'px';
-            cursorTrail.style.left = e.pageX + 'px';
-            cursorTrail.style.top = e.pageY + 'px';
-        });
-        
-        document.addEventListener('mousedown', () => {
-            cursor.style.animation = 'cursor-grow 0.2s forwards';
-            cursorTrail.style.animation = 'cursor-trail 0.5s ease-out';
-        });
-        
-        document.addEventListener('mouseup', () => {
-            cursor.style.animation = 'cursor-shrink 0.2s forwards';
-            cursorTrail.style.animation = '';
-        });
-        
-        document.addEventListener('click', () => {
-            cursorTrail.style.animation = 'cursor-trail 0.5s ease-out';
-        });
-        
+      const cursor = document.createElement("div");
+      const cursorTrail = document.createElement("div");
+      cursor.classList.add("cursor");
+      cursorTrail.classList.add("cursor-trail");
+      document.body.appendChild(cursor);
+      document.body.appendChild(cursorTrail);
 
+      document.addEventListener("mousemove", (e) => {
+        cursor.style.left = e.pageX + "px";
+        cursor.style.top = e.pageY + "px";
+        cursorTrail.style.left = e.pageX + "px";
+        cursorTrail.style.top = e.pageY + "px";
+      });
+
+      document.addEventListener("mousedown", () => {
+        cursor.style.animation = "cursor-grow 0.2s forwards";
+        cursorTrail.style.animation = "cursor-trail 0.5s ease-out";
+      });
+
+      document.addEventListener("mouseup", () => {
+        cursor.style.animation = "cursor-shrink 0.2s forwards";
+        cursorTrail.style.animation = "";
+      });
+
+      document.addEventListener("click", () => {
+        cursorTrail.style.animation = "cursor-trail 0.5s ease-out";
+      });
+    </script>
+    <!-- Scroll reveal animation -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const revealElements = document.querySelectorAll(".reveal");
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const el = entry.target;
+                const delay = el.getAttribute("data-delay");
+                if (delay) {
+                  setTimeout(
+                    () => el.classList.add("active"),
+                    parseFloat(delay),
+                  );
+                } else {
+                  el.classList.add("active");
+                }
+                observer.unobserve(el);
+              }
+            });
+          },
+          { threshold: 0.1 },
+        );
+        revealElements.forEach((el) => observer.observe(el));
+
+        // hero parallax for floating shapes
+        const hero = document.getElementById("home");
+        if (hero) {
+          hero.addEventListener("mousemove", (e) => {
+            const shapes = hero.querySelectorAll(".floating-shape");
+            shapes.forEach((shape, i) => {
+              const speed = (i + 1) * 0.02;
+              const x = (e.clientX - window.innerWidth / 2) * speed;
+              const y = (e.clientY - window.innerHeight / 2) * speed;
+              shape.style.transform = `translate(${x}px,${y}px)`;
+            });
+          });
+        }
+      });
     </script>
     <!-- Template Javascript -->
     <script src="public/import/assets/js/main.js"></script>
     <!-- Back to Top Button -->
- <a href="#" class="back-to-top"><i class="fas fa-chevron-up"></i></a>
-<style>
-    /* Back to Top Button */
-.back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #0BCEAF;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    line-height: 50px;
-    font-size: 24px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: none;
-    z-index: 1000;
-    cursor: pointer;
-    transition: background 0.3s;
-}
+    <a href="#" class="back-to-top"><i class="fas fa-chevron-up"></i></a>
+    <style>
+      /* Back to Top Button */
+      .back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #edaa8b, #9b7ba8);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        font-size: 24px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        display: none;
+        z-index: 1000;
+        cursor: pointer;
+        transition:
+          background 0.3s,
+          transform 0.3s;
+        animation: floatButton 3s ease-in-out infinite;
+      }
 
-.back-to-top:hover {
-    background: #0BCEAF;
-}
+      .back-to-top:hover {
+        background: linear-gradient(135deg, #9b7ba8, #7b5a8b);
+        transform: scale(1.1);
+      }
 
-.back-to-top i {
-    margin-top: 4px;
-}
+      .back-to-top {
+        opacity: 0;
+      }
+      .back-to-top.show {
+        opacity: 1;
+      }
+      .back-to-top.show {
+        opacity: 1;
+      }
 
-</style>
-
-</body>
-
+      .back-to-top i {
+        margin-top: 4px;
+      }
+    </style>
+  </body>
 </html>
