@@ -194,6 +194,97 @@
       .navbar:hover {
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       }
+      /* hide navbar when at very top until user scrolls */
+      .navbar.hide-on-top {
+        transform: translateY(-100%);
+        opacity: 0;
+        transition:
+          transform 0.3s,
+          opacity 0.3s;
+      }
+      /* premium code card in hero */
+      .code-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 14px;
+        color: #eee;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 0.9rem;
+        max-width: 380px;
+        overflow: hidden;
+        position: relative;
+        animation:
+          floatCard 6s ease-in-out infinite,
+          cardGlow 4s ease-in-out infinite;
+      }
+      @keyframes cardGlow {
+        0%,
+        100% {
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        50% {
+          box-shadow: 0 15px 40px rgba(128, 0, 128, 0.4);
+        }
+      }
+      @keyframes floatCard {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .code-card-header {
+        height: 20px;
+        padding: 4px 8px;
+        background: rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+      }
+      .code-card-header .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-right: 4px;
+      }
+      .code-card-header .red {
+        background: #ff605c;
+      }
+      .code-card-header .yellow {
+        background: #ffbd44;
+      }
+      .code-card-header .green {
+        background: #00ca56;
+      }
+      .code-card pre {
+        margin: 0;
+        padding: 0.8rem;
+        overflow-x: auto;
+      }
+      .code-card code {
+        display: block;
+        white-space: pre-wrap;
+        background: linear-gradient(90deg, #ffffff, #d291bc, #957dad);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientText 5s ease infinite;
+      }
+      @keyframes gradientText {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* remove previous snippet rules */
 
       .bg-primary {
         background: linear-gradient(
@@ -518,7 +609,7 @@
   <body data-spy="scroll" data-target=".navbar" data-offset="51">
     <!-- Navbar Start -->
     <nav
-      class="navbar fixed-top shadow-sm navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-lg-5"
+      class="navbar fixed-top shadow-sm navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-lg-5 hide-on-top"
     >
       <a href="index.html" class="navbar-brand ml-lg-3">
         <h1 class="m-0 display-5">
@@ -606,7 +697,16 @@
             <div
               class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5"
             >
-              <a href="CV..pdf" class="btn btn-premium mr-5">Download CV</a>
+              <!-- developer code snippet instead of CV download -->
+              <div class="code-card mr-5">
+                <div class="code-card-header">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                </div>
+                <pre><code id="premiumCode">
+</code></pre>
+              </div>
             </div>
           </div>
         </div>
@@ -1164,6 +1264,32 @@
             });
           });
         }
+        // navbar visibility logic: show once user scrolls past hero
+        const navbar = document.querySelector(".navbar");
+        function updateNavbar() {
+          if (window.scrollY > window.innerHeight * 0.2) {
+            navbar.classList.remove("hide-on-top");
+          } else {
+            navbar.classList.add("hide-on-top");
+          }
+        }
+        window.addEventListener("scroll", updateNavbar);
+        updateNavbar();
+        const premiumText = `Hello World!
+Name: Chandani Bhattarai
+Title: Full Stack Developer
+Experience: 3+ years
+Skills: Laravel, JavaScript, HTML, CSS, PostgreSQL, MySQL, Git.Vue Js
+`;
+        const codeEl = document.getElementById("premiumCode");
+        let idx = 0;
+        function typeNext() {
+          if (idx < premiumText.length) {
+            codeEl.textContent += premiumText.charAt(idx++);
+            setTimeout(typeNext, 40);
+          }
+        }
+        typeNext();
       });
     </script>
     <!-- Template Javascript -->
