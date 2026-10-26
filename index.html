@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23c084fc'/><stop offset='1' stop-color='%23fbbf24'/></linearGradient></defs><rect width='64' height='64' rx='14' fill='%230d0d1a'/><text x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='30' fill='url(%23g)'>CB</text></svg>" />
     <title>Chandani Bhattarai | Full Stack Developer</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -84,7 +85,14 @@
         padding: 0.6rem 0;
         box-shadow: 0 4px 40px rgba(0, 0, 0, 0.4);
       }
+      .brand-logo {
+        display: block;
+        width: 165px;
+        object-fit: cover;
+        object-position: center;
+      }
       .navbar-brand {
+        padding: 0;
         font-family: "Playfair Display", serif;
         font-size: 1.4rem;
         font-weight: 700;
@@ -123,9 +131,10 @@
       #hero {
         min-height: 100vh;
         display: flex;
-        align-items: flex-start;
-        padding-top: 0;
-        padding-bottom: 2rem;
+        align-items: center;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        overflow: hidden;
       }
       .hero-bg {
         position: absolute;
@@ -305,10 +314,26 @@
       }
 
       /* Orbit */
-      .hero-visual {
+      .hero-stage {
         position: relative;
-        width: 100%;
-        height: 100%;
+        width: 560px;
+        height: 520px;
+        max-width: 100%;
+        flex-shrink: 0;
+      }
+      .hero-visual {
+        position: absolute;
+        inset: 0;
+      }
+      .orbit-path {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 430px;
+        height: 430px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        border: 1px dashed rgba(192, 132, 252, 0.22);
       }
       .hero-glow {
         position: absolute;
@@ -317,17 +342,17 @@
         opacity: 0.7;
       }
       .glow-1 {
-        width: 360px;
-        height: 360px;
-        top: 16%;
-        left: 16%;
+        width: 300px;
+        height: 300px;
+        top: 14%;
+        left: 14%;
         background: rgba(192, 132, 252, 0.16);
       }
       .glow-2 {
-        width: 280px;
-        height: 280px;
-        bottom: 16%;
-        right: 16%;
+        width: 240px;
+        height: 240px;
+        bottom: 14%;
+        right: 14%;
         background: rgba(45, 212, 191, 0.14);
       }
       .hero-center {
@@ -339,8 +364,8 @@
         pointer-events: none;
       }
       .hero-core {
-        width: 220px;
-        height: 220px;
+        width: 200px;
+        height: 200px;
         border-radius: 50%;
         background: radial-gradient(
           circle,
@@ -351,10 +376,10 @@
       }
       .hero-ring {
         position: absolute;
-        width: 308px;
-        height: 308px;
+        width: 300px;
+        height: 300px;
         border-radius: 50%;
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         box-shadow: 0 0 50px rgba(255, 255, 255, 0.08);
       }
       .hero-cb {
@@ -373,8 +398,8 @@
       }
       .clock-ticks {
         position: absolute;
-        width: 320px;
-        height: 320px;
+        width: 300px;
+        height: 300px;
         border-radius: 50%;
       }
       .clock-ticks::before {
@@ -397,7 +422,7 @@
         }
       }
       .hero-orbit {
-        --radius: 240px;
+        --radius: 215px;
         position: absolute;
         inset: 0;
         display: flex;
@@ -426,11 +451,11 @@
       }
       .hero-tech-card {
         position: absolute;
-        width: 146px;
-        padding: 1rem 1.1rem;
+        width: 112px;
+        padding: 0.75rem 0.6rem;
         background: rgba(7, 8, 23, 0.94);
         border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 24px;
+        border-radius: 18px;
         color: #fff;
         font-size: 0.85rem;
         letter-spacing: 0.12em;
@@ -447,8 +472,42 @@
         color: var(--accent);
       }
       .hero-tech-card span {
-        font-size: 0.75rem;
-        letter-spacing: 0.1em;
+        font-size: 0.7rem;
+        letter-spacing: 0.08em;
+      }
+      @media (max-width: 1399px) {
+        .hero-stage {
+          transform: scale(0.82);
+          margin: -50px 0;
+        }
+      }
+      @media (max-width: 1199px) {
+        .hero-stage {
+          transform: scale(0.68);
+          margin: -90px -50px;
+        }
+      }
+      .hero-socials {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-bottom: 2.5rem;
+      }
+      .hero-tech-line {
+        color: var(--muted);
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+      }
+      .hero-tech-line b {
+        color: var(--accent);
+        font-weight: 600;
+        padding: 0 0.35rem;
+      }
+      .hero-stats {
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
       }
       @keyframes orbit {
         from {
@@ -467,6 +526,262 @@
             rotate(calc(-1 * var(--deg) - 360deg));
         }
       }
+
+      /* ── CODE WINDOW HERO ── */
+      @property --angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+      }
+      .code-window {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 350px;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        border-radius: 18px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55),
+          0 0 70px rgba(192, 132, 252, 0.18);
+        animation: windowIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) both,
+          windowFloat 7s ease-in-out 0.9s infinite;
+      }
+      /* spinning gradient border */
+      .code-window::before {
+        content: "";
+        position: absolute;
+        inset: -1.5px;
+        border-radius: 19.5px;
+        background: conic-gradient(
+          from var(--angle),
+          var(--accent),
+          transparent 25%,
+          var(--teal) 50%,
+          transparent 75%,
+          var(--gold)
+        );
+        z-index: -1;
+        animation: borderSpin 6s linear infinite;
+      }
+      @keyframes borderSpin {
+        to {
+          --angle: 360deg;
+        }
+      }
+      @keyframes windowIn {
+        from {
+          opacity: 0;
+          transform: translate(-50%, -46%) scale(0.94);
+        }
+        to {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+      @keyframes windowFloat {
+        0%,
+        100% {
+          transform: translate(-50%, -50%);
+        }
+        50% {
+          transform: translate(-50%, calc(-50% - 10px));
+        }
+      }
+      .code-bar {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 0.8rem 1.1rem;
+        background: #15152e;
+        border-bottom: 1px solid var(--border);
+        border-radius: 18px 18px 0 0;
+      }
+      .code-bar .dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+      }
+      .dot.r { background: #ff5f57; }
+      .dot.y { background: #febc2e; }
+      .dot.g { background: #28c840; }
+      .code-file {
+        margin-left: auto;
+        font-size: 0.72rem;
+        color: var(--muted);
+        letter-spacing: 0.05em;
+      }
+      .code-file i {
+        color: var(--accent);
+        margin-right: 0.3rem;
+      }
+      .code-body {
+        margin: 0;
+        padding: 1.2rem 1.3rem 1.4rem;
+        font-family: "Consolas", "Courier New", monospace;
+        font-size: 0.82rem;
+        line-height: 1.8;
+        color: #cbd5e1;
+        white-space: pre;
+        background: #0b0b20;
+        border-radius: 0 0 18px 18px;
+      }
+      .code-body .ln {
+        display: block;
+        opacity: 0;
+        animation: lineIn 0.45s ease-out forwards;
+        animation-delay: calc(0.7s + var(--i) * 0.14s);
+      }
+      @keyframes lineIn {
+        from {
+          opacity: 0;
+          transform: translateX(-8px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .c-cm { color: #64748b; font-style: italic; }
+      .c-kw { color: #c084fc; }
+      .c-cl { color: #fbbf24; }
+      .c-var { color: #2dd4bf; }
+      .c-st { color: #f0abfc; }
+      .c-fn { color: #60a5fa; }
+      .c-cursor {
+        display: inline-block;
+        width: 7px;
+        height: 1em;
+        background: var(--accent);
+        vertical-align: text-bottom;
+        margin-left: 4px;
+        animation: blink 1s steps(1) infinite;
+      }
+      @keyframes blink {
+        50% { opacity: 0; }
+      }
+      .float-badge {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.55rem 0.95rem;
+        background: rgba(26, 26, 53, 0.95);
+        border: 1px solid var(--border);
+        border-radius: 50px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        white-space: nowrap;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        z-index: 3;
+        animation: badgeIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+          chipFloat 5s ease-in-out infinite;
+      }
+      .float-badge i { font-size: 1rem; }
+      @keyframes badgeIn {
+        from {
+          opacity: 0;
+          scale: 0.6;
+        }
+        to {
+          opacity: 1;
+          scale: 1;
+        }
+      }
+      /* left column */
+      .fb-1 { top: 12%; left: 0; animation-delay: 0.2s, 0s; }
+      .fb-3 { top: 44%; left: 0; animation-delay: 0.35s, 1.2s; }
+      .fb-5 { top: 76%; left: 0; animation-delay: 0.5s, 2.4s; }
+      /* right column */
+      .fb-2 { top: 20%; right: 0; animation-delay: 0.3s, 0.6s; }
+      .fb-4 { top: 52%; right: 0; animation-delay: 0.45s, 1.8s; }
+      .fb-6 { top: 82%; right: 0; animation-delay: 0.6s, 3s; }
+      .fb-1 i { color: #f87171; }
+      .fb-2 i { color: #4ade80; }
+      .fb-3 i { color: #38bdf8; }
+      .fb-4 i { color: #fbbf24; }
+      .fb-5 i { color: #2dd4bf; }
+      .fb-6 i { color: #fb923c; }
+      .hero-stage .orbit-path {
+        width: 470px;
+        height: 470px;
+        border-color: rgba(192, 132, 252, 0.22);
+        animation: ringSpin 40s linear infinite;
+      }
+      .hero-stage .orbit-path.inner {
+        width: 410px;
+        height: 410px;
+        border: 1px solid rgba(45, 212, 191, 0.1);
+        animation: ringSpin 60s linear infinite reverse;
+      }
+      @keyframes ringSpin {
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .code-window, .code-window::before, .float-badge, .code-body .ln,
+        .hero-stage .orbit-path { animation: none; opacity: 1; }
+      }
+
+      /* ── HERO FIT (compact, one screen) ── */
+      #hero {
+        min-height: calc(100vh - 70px);
+        padding: 1.25rem 0;
+      }
+      #hero .hero-name {
+        font-size: clamp(1.7rem, 4vw, 4rem);
+        white-space: nowrap;
+        margin: 1rem 0 !important;
+      }
+      #hero .hero-name .line1,
+      #hero .hero-name .line2 {
+        display: inline;
+      }
+      #hero .hero-role {
+        margin: 0 0 1.1rem !important;
+        font-size: 1rem !important;
+      }
+      #hero .hero-tech-line { margin-bottom: 1.4rem; }
+      #hero .hero-btns { margin-bottom: 1.5rem !important; gap: 1rem !important; }
+      #hero .hero-socials { margin-bottom: 1.5rem; }
+      #hero .hero-stats {
+        margin-top: 0;
+        padding-top: 1.25rem;
+        gap: 2.5rem !important;
+      }
+
+      /* ── CLEAN: hide cursor until mouse moves, drop extra ring ── */
+      .cursor, .cursor-ring { opacity: 0; transition: opacity 0.3s; }
+      body.has-mouse .cursor, body.has-mouse .cursor-ring { opacity: 1; }
+      @media (pointer: coarse) { .cursor, .cursor-ring { display: none; } }
+      #hero .orbit-path.inner { display: none; }
+
+      /* ── HERO FULL WIDTH ── */
+      #hero { padding: 0.5rem 0; }
+      #hero > .container {
+        max-width: 1560px;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+      }
+      #hero .hero-stage {
+        zoom: 1.2;
+        transform: none;
+        margin: 0;
+      }
+      #hero .hero-role { font-size: 1.2rem !important; line-height: 1.6; margin-bottom: 1.4rem !important; }
+      #hero .hero-tech-line { font-size: 0.9rem; margin-bottom: 1.8rem; }
+      #hero .btn-primary-custom,
+      #hero .btn-outline-custom { padding: 0.95rem 2.4rem; font-size: 1.02rem; }
+      #hero .hero-btns { margin-bottom: 1.8rem !important; }
+      #hero .hero-socials { gap: 0.9rem; margin-bottom: 1.8rem; }
+      #hero .hero-socials .contact-social-btn { width: 52px; height: 52px; font-size: 1.1rem; }
+      #hero .stat-num { font-size: 2.6rem; }
+      #hero .stat-label { font-size: 0.88rem; }
+      #hero .hero-stats { padding-top: 1.6rem; gap: 3.5rem !important; }
+      #hero .hero-tag { font-size: 0.88rem; padding: 0.45rem 1.2rem; }
+      @media (max-width: 1599px) { #hero .hero-stage { zoom: 1.05; } }
+      @media (max-width: 1399px) { #hero .hero-stage { zoom: 0.9; } }
+      @media (max-width: 1199px) { #hero .hero-stage { zoom: 0.75; } }
 
       /* ── SECTION SHARED ── */
       section {
@@ -1217,6 +1532,93 @@
         border-radius: 50px;
       }
 
+      .project-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .project-index {
+        font-family: "Playfair Display", serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--border);
+        line-height: 1;
+      }
+      .project-type {
+        color: var(--teal);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin: -0.4rem 0 0.9rem;
+      }
+      .project-features {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 1.25rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border);
+      }
+      .project-features li {
+        position: relative;
+        padding-left: 1.1rem;
+        color: var(--muted);
+        font-size: 0.8rem;
+        line-height: 1.55;
+        margin-bottom: 0.4rem;
+      }
+      .project-features li::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+        font-size: 0.7rem;
+        top: 0.1rem;
+      }
+      .project-card {
+        display: flex;
+        flex-direction: column;
+      }
+      .project-tags {
+        margin-top: auto;
+      }
+      .project-card > * {
+        position: relative;
+        z-index: 1;
+      }
+      .project-desc {
+        margin-bottom: 1rem;
+      }
+
+      /* ── PROJECTS: equal-size grid ── */
+      #projects .row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-auto-rows: 1fr;
+        gap: 1.5rem;
+        margin: 0;
+      }
+      #projects .row > [class*='col-'] {
+        width: auto;
+        max-width: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+      }
+      #projects .project-card {
+        width: 100%;
+        height: 100%;
+        padding: 1.75rem;
+      }
+      #projects .project-desc { flex: 0 0 auto; }
+      #projects .project-features { flex: 1 1 auto; }
+      @media (max-width: 991px) {
+        #projects .row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+      @media (max-width: 640px) {
+        #projects .row { grid-template-columns: 1fr; grid-auto-rows: auto; }
+      }
+
       /* ── EDUCATION ── */
       #education {
         background: var(--dark);
@@ -1713,7 +2115,9 @@
     <!-- ── NAVBAR ── -->
     <nav class="navbar navbar-expand-lg" id="mainNav">
       <div class="container">
-        <a class="navbar-brand" href="#hero">CB.</a>
+        <a class="navbar-brand" href="#hero" aria-label="Chandani Bhattarai"
+          ><img src="logo.png" alt="Chandani" class="brand-logo"
+        /></a>
         <button
           class="navbar-toggler border-0"
           type="button"
@@ -1760,66 +2164,25 @@
           <div
             class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center"
           >
-            <div
-              style="
-                position: relative;
-                width: min(760px, 100%);
-                height: 760px;
-                overflow: hidden;
-                border-radius: 32px;
-              "
-            >
+            <div class="hero-stage">
               <div class="hero-visual">
+                <div class="orbit-path"></div>
+                <div class="orbit-path inner"></div>
                 <div class="hero-glow glow-1"></div>
                 <div class="hero-glow glow-2"></div>
-                <div class="hero-center">
-                  <div class="hero-core"></div>
-                  <div class="hero-ring clock-ring"></div>
-                  <div class="clock-ticks"></div>
-                  <div class="hero-cb">CB</div>
+                <div class="code-window">
+                  <div class="code-bar">
+                    <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+                    <span class="code-file"><i class="fas fa-file-code"></i> chandani.php</span>
+                  </div>
+                  <pre class="code-body"><span class="ln" style="--i:0"><span class="c-cm">// who am I?</span></span><span class="ln" style="--i:1"><span class="c-kw">class</span> <span class="c-cl">Developer</span> {</span><span class="ln" style="--i:2">  <span class="c-kw">public</span> <span class="c-var">$name</span>  = <span class="c-st">'Chandani Bhattarai'</span>;</span><span class="ln" style="--i:3">  <span class="c-kw">public</span> <span class="c-var">$role</span>  = <span class="c-st">'Full Stack Developer'</span>;</span><span class="ln" style="--i:4">  <span class="c-kw">public</span> <span class="c-var">$stack</span> = [</span><span class="ln" style="--i:5">    <span class="c-st">'Laravel'</span>, <span class="c-st">'Vue.js'</span>,</span><span class="ln" style="--i:6">    <span class="c-st">'React'</span>, <span class="c-st">'Inertia.js'</span>,</span><span class="ln" style="--i:7">  ];</span><span class="ln" style="--i:8">  <span class="c-kw">public</span> <span class="c-var">$cloud</span> = <span class="c-st">'AWS'</span>;</span><span class="ln" style="--i:9"> </span><span class="ln" style="--i:10">  <span class="c-kw">function</span> <span class="c-fn">build</span>() {</span><span class="ln" style="--i:11">    <span class="c-kw">return</span> <span class="c-st">'ideas into reality'</span>;</span><span class="ln" style="--i:12">  }</span><span class="ln" style="--i:13">}<span class="c-cursor"></span></span></pre>
                 </div>
-                <div class="hero-orbit">
-                  <div class="orbit-item" style="--deg: 0deg">
-                    <div class="hero-tech-card">
-                      <i class="fab fa-js"></i><span>JavaScript</span>
-                    </div>
-                  </div>
-                  <div class="orbit-item" style="--deg: 45deg">
-                    <div class="hero-tech-card">
-                      <i class="fab fa-bootstrap"></i><span>Bootstrap</span>
-                    </div>
-                  </div>
-                  <div class="orbit-item" style="--deg: 90deg">
-                    <div class="hero-tech-card">
-                      <i class="fab fa-git-alt"></i><span>Git</span>
-                    </div>
-                  </div>
-                  <div class="orbit-item" style="--deg: 135deg">
-                    <div class="hero-tech-card">
-                      <i class="fab fa-aws"></i><span>AWS</span>
-                    </div>
-                  </div>
-                  <div class="orbit-item" style="--deg: 180deg">
-                    <div class="hero-tech-card">
-                      <i class="fab fa-laravel"></i><span>Laravel</span>
-                    </div>
-                  </div>
-                  <div class="orbit-item" style="--deg: 225deg">
-                    <div class="hero-tech-card">
-                      <i class="fab fa-vuejs"></i><span>Vue.js</span>
-                    </div>
-                  </div>
-                  <div class="orbit-item" style="--deg: 270deg">
-                    <div class="hero-tech-card">
-                      <i class="fab fa-css3-alt"></i><span>CSS</span>
-                    </div>
-                  </div>
-                  <div class="orbit-item" style="--deg: 315deg">
-                    <div class="hero-tech-card">
-                      <i class="fas fa-server"></i><span>Database</span>
-                    </div>
-                  </div>
-                </div>
+                <div class="float-badge fb-1"><i class="fab fa-laravel"></i> Laravel</div>
+                <div class="float-badge fb-2"><i class="fab fa-vuejs"></i> Vue.js</div>
+                <div class="float-badge fb-3"><i class="fab fa-react"></i> React</div>
+                <div class="float-badge fb-4"><i class="fab fa-aws"></i> AWS</div>
+                <div class="float-badge fb-5"><i class="fas fa-database"></i> MySQL</div>
+                <div class="float-badge fb-6"><i class="fab fa-git-alt"></i> Git</div>
               </div>
             </div>
           </div>
@@ -1843,7 +2206,7 @@
                 class="hero-role"
                 style="font-size: 1.05rem; margin-bottom: 2rem"
               >
-                Building scalable web applications,crafting seamless <br />user
+                Building scalable web applications, crafting seamless <br />user
                 experiences, and turning ideas into reality.
               </p>
               <div
@@ -1856,11 +2219,33 @@
                 "
               >
                 <a href="#contact" class="btn-primary-custom"
-                  ><i class="fas fa-paper-plane"></i> Get In Touch</a
+                  ><i class="fas fa-handshake"></i> Let's Collaborate</a
                 >
                 <a href="#projects" class="btn-outline-custom"
-                  ><i class="fas fa-code"></i> View My Work</a
+                  ><i class="fas fa-compass"></i> Explore My Craft</a
                 >
+              </div>
+              <div class="hero-socials">
+                <a
+                  href="https://www.linkedin.com/in/chandani-bhattarai-9b9967338/"
+                  target="_blank"
+                  class="contact-social-btn linkedin"
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+                <a
+                  href="mailto:bhattaraichandani09@gmail.com"
+                  class="contact-social-btn email"
+                  ><i class="fas fa-envelope"></i
+                ></a>
+                <a href="tel:9863032527" class="contact-social-btn email"
+                  ><i class="fas fa-phone"></i
+                ></a>
+                <a href="https://www.facebook.com/chandani.bhattarai1" target="_blank" class="contact-social-btn facebook"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a href="https://www.instagram.com/chandanibhattarai_/" target="_blank" class="contact-social-btn instagram"
+                  ><i class="fab fa-instagram"></i
+                ></a>
               </div>
               <div
                 class="hero-stats"
@@ -1986,7 +2371,7 @@
                 <div>
                   <div class="info-pill-label">Email</div>
                   <div class="info-pill-value">
-                    chandanibhattarai123@gmail.com
+                    bhattaraichandani09@gmail.com
                   </div>
                 </div>
               </div>
@@ -2060,6 +2445,8 @@
               </div>
               <span class="skill-tag">Laravel</span
               ><span class="skill-tag">Vue.js</span
+              ><span class="skill-tag">React</span
+              ><span class="skill-tag">Inertia.js</span
               ><span class="skill-tag">Livewire</span
               ><span class="skill-tag">Bootstrap</span
               ><span class="skill-tag">Tailwind CSS</span>
@@ -2079,7 +2466,8 @@
               <div class="skill-cat-title">
                 <i class="fas fa-cloud"></i> Cloud & DevOps
               </div>
-              <span class="skill-tag">AWS S3</span
+              <span class="skill-tag">AWS</span
+              ><span class="skill-tag">AWS S3</span
               ><span class="skill-tag">Docker</span
               ><span class="skill-tag">Ubuntu</span
               ><span class="skill-tag">Windows</span>
@@ -2111,6 +2499,7 @@
               ><span class="skill-tag">Khalti</span
               ><span class="skill-tag">PayPal</span
               ><span class="skill-tag">FCM</span
+              ><span class="skill-tag">ClickSend</span
               ><span class="skill-tag">SMTP</span
               ><span class="skill-tag">Firebase</span>
             </div>
@@ -2274,6 +2663,10 @@
                       Firebase Cloud Messaging (FCM) tokens.
                     </li>
                     <li>
+                      Integrated ClickSend for SMS delivery, including OTP and
+                      phone verification flows.
+                    </li>
+                    <li>
                       Created customizable email signatures integrated within
                       the CMS for consistent professional branding.
                     </li>
@@ -2281,9 +2674,11 @@
                   <div class="exp-techs">
                     <span class="exp-tech">Laravel</span>
                     <span class="exp-tech">Vue.js</span>
+                    <span class="exp-tech">AWS</span>
                     <span class="exp-tech">AWS S3</span>
                     <span class="exp-tech">Stripe</span>
                     <span class="exp-tech">Firebase</span>
+                    <span class="exp-tech">ClickSend</span>
                     <span class="exp-tech">Spatie</span>
                     <span class="exp-tech">Figma</span>
                     <span class="exp-tech">MySQL</span>
@@ -2383,143 +2778,175 @@
         <div class="row g-4">
           <div class="col-md-6 col-lg-4 reveal delay-1">
             <div class="project-card">
-              <div class="project-icon">🏋️</div>
-              <div class="project-name">Fitfutures</div>
-              <p class="project-desc">
-                Scalable LMS backend with role-based access, Firebase auth, and
-                media storage.
-              </p>
-              <div class="project-tags">
-                <span class="proj-tag">Laravel</span
-                ><span class="proj-tag">Firebase</span
-                ><span class="proj-tag">AWS S3</span
-                ><span class="proj-tag">Spatie</span>
+              <div class="project-top">
+                <div class="project-icon">🏛️</div>
+                <span class="project-index">01</span>
               </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 reveal delay-2">
-            <div class="project-card">
-              <div class="project-icon">💪</div>
-              <div class="project-name">Empowered Man</div>
-              <p class="project-desc">
-                Full-stack app with secure auth, notifications, and REST API
-                support.
-              </p>
-              <div class="project-tags">
-                <span class="proj-tag">Laravel</span
-                ><span class="proj-tag">Firebase</span
-                ><span class="proj-tag">RESTful API</span
-                ><span class="proj-tag">SMTP</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 reveal delay-3">
-            <div class="project-card">
-              <div class="project-icon">🐣</div>
-              <div class="project-name">Check In Chick</div>
-              <p class="project-desc">
-                Baby tracking app with reminders, notifications, and support
-                tools.
-              </p>
-              <div class="project-tags">
-                <span class="proj-tag">Laravel</span
-                ><span class="proj-tag">Firebase</span
-                ><span class="proj-tag">Vue.js</span
-                ><span class="proj-tag">RESTful API</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 reveal delay-1">
-            <div class="project-card">
-              <div class="project-icon">🧮</div>
-              <div class="project-name">Scrambled Maths</div>
-              <p class="project-desc">
-                Educational gaming platform with score tracking and subscription
-                support.
-              </p>
-              <div class="project-tags">
-                <span class="proj-tag">Laravel</span
-                ><span class="proj-tag">Stripe</span
-                ><span class="proj-tag">Firebase</span
-                ><span class="proj-tag">Spatie</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 reveal delay-2">
-            <div class="project-card">
-              <div class="project-icon">🏛️</div>
               <div class="project-name">E-office</div>
-              <p class="project-desc">
-                Government CMS for reports, invoices, document management, and
-                exports.
-              </p>
+              <div class="project-type">Government Digital Office System</div>
+              <p class="project-desc">Digital office software for Kathmandu Metropolitan City, moving paperwork online.</p>
+              <ul class="project-features">
+                <li>Reports, invoices and document management</li>
+                <li>Register and dispatch books</li>
+                <li>PDF export and official formats</li>
+              </ul>
               <div class="project-tags">
-                <span class="proj-tag">Laravel</span
-                ><span class="proj-tag">PostgreSQL</span
-                ><span class="proj-tag">PDF Export</span
-                ><span class="proj-tag">CMS</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 reveal delay-3">
-            <div class="project-card">
-              <div class="project-icon">🛒</div>
-              <div class="project-name">Grocery Go</div>
-              <p class="project-desc">
-                Compare grocery prices across stores and lock in weekly savings.
-              </p>
-              <div class="project-tags">
-                <span class="proj-tag">Laravel</span
-                ><span class="proj-tag">Vue.js</span
-                ><span class="proj-tag">MySQL</span
-                ><span class="proj-tag">Responsive</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 reveal delay-1">
-            <div class="project-card">
-              <div class="project-icon">🏫</div>
-              <div class="project-name">SMS — School Management</div>
-              <p class="project-desc">
-                School system with roles, assignments, reports, and grade
-                tracking.
-              </p>
-              <div class="project-tags">
-                <span class="proj-tag">Laravel</span
-                ><span class="proj-tag">MySQL</span
-                ><span class="proj-tag">RBAC</span>
+                <span class="proj-tag">Laravel</span><span class="proj-tag">PostgreSQL</span><span class="proj-tag">PDF Export</span><span class="proj-tag">CMS</span>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 reveal delay-2">
             <div class="project-card">
-              <div class="project-icon">💼</div>
-              <div class="project-name">Hire e Bicep DI</div>
-              <p class="project-desc">
-                Responsive Figma-based web app with interactive modules for
-                better UX.
-              </p>
+              <div class="project-top">
+                <div class="project-icon">🧮</div>
+                <span class="project-index">02</span>
+              </div>
+              <div class="project-name">Scrambled Maths</div>
+              <div class="project-type">Kids Maths Game with Parental Controls</div>
+              <p class="project-desc">Kids' maths game with rewards and streaks, plus parental controls and subscriptions.</p>
+              <ul class="project-features">
+                <li>Balloon, Speed and Points games</li>
+                <li>Time limits and game restrictions</li>
+                <li>Stripe and in-app subscriptions</li>
+              </ul>
               <div class="project-tags">
-                <span class="proj-tag">Laravel</span
-                ><span class="proj-tag">Figma</span
-                ><span class="proj-tag">Bootstrap</span
-                ><span class="proj-tag">Responsive</span>
+                <span class="proj-tag">Laravel</span><span class="proj-tag">Sanctum</span><span class="proj-tag">Stripe</span><span class="proj-tag">REST API</span>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 reveal delay-3">
             <div class="project-card">
-              <div class="project-icon">📡</div>
-              <div class="project-name">NT Vacancy</div>
-              <p class="project-desc">
-                Nepal Telecom vacancy management with reports, user labels,
-                chunked emails, and auto-generated admit cards.
-              </p>
+              <div class="project-top">
+                <div class="project-icon">💪</div>
+                <span class="project-index">03</span>
+              </div>
+              <div class="project-name">Empowered Man</div>
+              <div class="project-type">Self-Development App for Men</div>
+              <p class="project-desc">Self-improvement app with courses, goals, habit tracking, journals and a community.</p>
+              <ul class="project-features">
+                <li>Courses, goals and habit tracker</li>
+                <li>Assessments with power score</li>
+                <li>Community posts and Agora chat</li>
+              </ul>
               <div class="project-tags">
-                <span class="proj-tag">Laravel</span
-                ><span class="proj-tag">MySQL</span
-                ><span class="proj-tag">SMTP</span
-                ><span class="proj-tag">PDF</span>
+                <span class="proj-tag">Laravel</span><span class="proj-tag">Agora</span><span class="proj-tag">Firebase</span><span class="proj-tag">RESTful API</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 reveal delay-1">
+            <div class="project-card">
+              <div class="project-top">
+                <div class="project-icon">🛒</div>
+                <span class="project-index">04</span>
+              </div>
+              <div class="project-name">Grocery Go</div>
+              <div class="project-type">Grocery Shopping App</div>
+              <p class="project-desc">Grocery app with shopping lists, product search and a savings tracker, plus admin panel.</p>
+              <ul class="project-features">
+                <li>Lists, favourites and store locations</li>
+                <li>Promo codes and push notifications</li>
+                <li>Stripe and in-app subscriptions</li>
+              </ul>
+              <div class="project-tags">
+                <span class="proj-tag">Laravel</span><span class="proj-tag">Stripe</span><span class="proj-tag">Firebase</span><span class="proj-tag">MySQL</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 reveal delay-2">
+            <div class="project-card">
+              <div class="project-top">
+                <div class="project-icon">🤝</div>
+                <span class="project-index">05</span>
+              </div>
+              <div class="project-name">Borrowed</div>
+              <div class="project-type">Peer-to-Peer Rental Marketplace</div>
+              <p class="project-desc">Airbnb-style marketplace to list items, rent from others and pay securely.</p>
+              <ul class="project-features">
+                <li>Rental requests and Stripe payments</li>
+                <li>Reviews, ID verification, disputes</li>
+                <li>Admin: analytics, users and listings</li>
+              </ul>
+              <div class="project-tags">
+                <span class="proj-tag">Laravel</span><span class="proj-tag">Inertia.js</span><span class="proj-tag">React</span><span class="proj-tag">Stripe</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 reveal delay-3">
+            <div class="project-card">
+              <div class="project-top">
+                <div class="project-icon">🏋️</div>
+                <span class="project-index">06</span>
+              </div>
+              <div class="project-name">FitFutures</div>
+              <div class="project-type">School Wellbeing & Fitness Platform</div>
+              <p class="project-desc">Wellbeing and fitness learning platform with separate Admin, School and Student logins.</p>
+              <ul class="project-features">
+                <li>Lessons, quizzes, tasks and journal</li>
+                <li>School tools for staff and students</li>
+                <li>Firebase push notifications</li>
+              </ul>
+              <div class="project-tags">
+                <span class="proj-tag">Laravel</span><span class="proj-tag">Firebase</span><span class="proj-tag">AWS S3</span><span class="proj-tag">Spatie</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 reveal delay-1">
+            <div class="project-card">
+              <div class="project-top">
+                <div class="project-icon">🐣</div>
+                <span class="project-index">07</span>
+              </div>
+              <div class="project-name">Check In Chick</div>
+              <div class="project-type">Baby & Parent Tracker</div>
+              <p class="project-desc">Parenting companion for feeds, nappies and routines, with reminders, reports and chat.</p>
+              <ul class="project-features">
+                <li>Feeding, nappy records and alarms</li>
+                <li>Q&A onboarding and Agora chat</li>
+                <li>Admin: users, FAQs and inbox</li>
+              </ul>
+              <div class="project-tags">
+                <span class="proj-tag">Laravel</span><span class="proj-tag">Vue.js</span><span class="proj-tag">Agora</span><span class="proj-tag">Firebase</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 reveal delay-2">
+            <div class="project-card">
+              <div class="project-top">
+                <div class="project-icon">📡</div>
+                <span class="project-index">08</span>
+              </div>
+              <div class="project-name">NT Vacancy</div>
+              <div class="project-type">Recruitment Management System</div>
+              <p class="project-desc">Vacancy and applicant system for Nepal Telecom that automates the hiring workflow.</p>
+              <ul class="project-features">
+                <li>Reports and applicant labels</li>
+                <li>Chunked bulk emails</li>
+                <li>Auto-generated PDF admit cards</li>
+              </ul>
+              <div class="project-tags">
+                <span class="proj-tag">Laravel</span><span class="proj-tag">MySQL</span><span class="proj-tag">SMTP</span><span class="proj-tag">PDF</span>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-md-6 col-lg-4 reveal delay-3">
+            <div class="project-card">
+              <div class="project-top">
+                <div class="project-icon">🏫</div>
+                <span class="project-index">09</span>
+              </div>
+              <div class="project-name">SMS — School Management</div>
+              <div class="project-type">School Administration System</div>
+              <p class="project-desc">School management for administrators, teachers, students and parents.</p>
+              <ul class="project-features">
+                <li>Role-based dashboards</li>
+                <li>Assignments, attendance and grades</li>
+                <li>Report cards and exports</li>
+              </ul>
+              <div class="project-tags">
+                <span class="proj-tag">Laravel</span><span class="proj-tag">MySQL</span><span class="proj-tag">RBAC</span>
               </div>
             </div>
           </div>
@@ -2614,19 +3041,19 @@
                     ><i class="fab fa-linkedin-in"></i
                   ></a>
                   <a
-                    href="https://www.facebook.com"
+                    href="https://www.facebook.com/chandani.bhattarai1"
                     target="_blank"
                     class="contact-social-btn facebook"
                     ><i class="fab fa-facebook-f"></i
                   ></a>
                   <a
-                    href="https://www.instagram.com"
+                    href="https://www.instagram.com/chandanibhattarai_/"
                     target="_blank"
                     class="contact-social-btn instagram"
                     ><i class="fab fa-instagram"></i
                   ></a>
                   <a
-                    href="mailto:chandanibhattarai123@gmail.com"
+                    href="mailto:bhattaraichandani09@gmail.com"
                     class="contact-social-btn email"
                     ><i class="fas fa-envelope"></i
                   ></a>
@@ -2638,7 +3065,7 @@
             <div class="col-lg-7 reveal reveal-right">
               <div class="contact-cards">
                 <a
-                  href="mailto:chandanibhattarai123@gmail.com"
+                  href="mailto:bhattaraichandani09@gmail.com"
                   class="contact-card"
                 >
                   <div
@@ -2657,7 +3084,7 @@
                   <div>
                     <div class="contact-card-label">Email</div>
                     <div class="contact-card-value">
-                      chandanibhattarai123@gmail.com
+                      bhattaraichandani09@gmail.com
                     </div>
                   </div>
                   <i class="fas fa-arrow-right contact-card-arrow"></i>
@@ -2742,26 +3169,26 @@
           ><i class="fab fa-linkedin-in"></i
         ></a>
         <a
-          href="https://www.facebook.com"
+          href="https://www.facebook.com/chandani.bhattarai1"
           target="_blank"
           class="footer-social-btn"
           ><i class="fab fa-facebook-f"></i
         ></a>
         <a
-          href="https://www.instagram.com"
+          href="https://www.instagram.com/chandanibhattarai_/"
           target="_blank"
           class="footer-social-btn"
           ><i class="fab fa-instagram"></i
         ></a>
         <a
-          href="mailto:chandanibhattarai123@gmail.com"
+          href="mailto:bhattaraichandani09@gmail.com"
           class="footer-social-btn"
           ><i class="fas fa-envelope"></i
         ></a>
       </div>
       <p>
         Designed &amp; Built by <span>Chandani Bhattarai</span> &nbsp;·&nbsp;
-        Full Stack Developer &nbsp;·&nbsp; 2025
+        Full Stack Developer &nbsp;·&nbsp; 2024
       </p>
     </footer>
 
@@ -2798,6 +3225,7 @@
       const cursor = document.getElementById("cursor");
       const ring = document.getElementById("cursorRing");
       document.addEventListener("mousemove", (e) => {
+        document.body.classList.add("has-mouse");
         cursor.style.left = e.clientX + "px";
         cursor.style.top = e.clientY + "px";
         setTimeout(() => {
