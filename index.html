@@ -1619,6 +1619,279 @@
         #projects .row { grid-template-columns: 1fr; grid-auto-rows: auto; }
       }
 
+      /* ── PROJECTS: image cards + detail modal ── */
+      #projects .project-card {
+        padding: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      #projects .project-card::after {
+        display: none;
+      }
+      .proj-thumb {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+        background: var(--dark);
+        border-bottom: 1px solid var(--border);
+      }
+      .proj-thumb img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        padding: 0.5rem;
+        transition: transform 0.5s;
+      }
+      .project-card:hover .proj-thumb img {
+        transform: scale(1.03);
+      }
+      .proj-thumb.has-img .thumb-fallback {
+        display: none;
+      }
+      .thumb-fallback {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        padding: 1rem;
+        text-align: center;
+      }
+      .thumb-icon {
+        font-size: 2.2rem;
+      }
+      .thumb-name {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        font-weight: 800;
+        line-height: 1.15;
+        background: linear-gradient(135deg, var(--accent), var(--gold));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .hue-0 { background: radial-gradient(circle at 25% 20%, rgba(192, 132, 252, 0.28), transparent 60%), var(--dark); }
+      .hue-1 { background: radial-gradient(circle at 75% 25%, rgba(45, 212, 191, 0.25), transparent 60%), var(--dark); }
+      .hue-2 { background: radial-gradient(circle at 25% 80%, rgba(251, 191, 36, 0.22), transparent 60%), var(--dark); }
+      .hue-3 { background: radial-gradient(circle at 80% 75%, rgba(240, 171, 252, 0.25), transparent 60%), var(--dark); }
+      #projects .project-index {
+        position: absolute;
+        top: 0.8rem;
+        right: 1rem;
+        z-index: 2;
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #fff;
+        background: rgba(13, 13, 26, 0.7);
+        border: 1px solid var(--border);
+        border-radius: 50px;
+        padding: 0.15rem 0.7rem;
+        backdrop-filter: blur(6px);
+      }
+      #projects .project-card {
+        position: relative;
+      }
+      .project-body {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        padding: 1.25rem 1.4rem 1.4rem;
+      }
+      #projects .project-name {
+        margin-bottom: 0.35rem;
+      }
+      #projects .project-type {
+        margin: 0 0 1.1rem;
+      }
+      .project-more {
+        margin-top: auto;
+        align-self: flex-start;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(192, 132, 252, 0.1);
+        border: 1px solid rgba(192, 132, 252, 0.3);
+        color: var(--accent);
+        font-size: 0.82rem;
+        font-weight: 600;
+        padding: 0.5rem 1.1rem;
+        border-radius: 50px;
+        transition: all 0.3s;
+      }
+      .project-more:hover {
+        background: var(--accent);
+        color: #12122a;
+      }
+      .project-more i {
+        font-size: 0.72rem;
+        transition: transform 0.3s;
+      }
+      .project-more:hover i {
+        transform: translateX(3px);
+      }
+
+      /* detail modal */
+      #projectModal .modal-content {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        color: var(--text);
+        overflow: hidden;
+      }
+      #projectModal .btn-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 5;
+        filter: invert(1);
+        background-color: rgba(13, 13, 26, 0.7);
+        border-radius: 50%;
+        padding: 0.6rem;
+        opacity: 1;
+      }
+      .pm-thumb {
+        aspect-ratio: 16 / 9;
+      }
+      .pm-content {
+        padding: 1.75rem 2rem 2rem;
+      }
+      .pm-type {
+        color: var(--teal);
+        font-size: 0.74rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 0.4rem;
+      }
+      .pm-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.9rem;
+        font-weight: 800;
+        margin-bottom: 0.9rem;
+      }
+      .pm-desc {
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.8;
+        margin-bottom: 1.4rem;
+      }
+      .pm-h {
+        color: var(--accent);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin: 1.4rem 0 0.7rem;
+      }
+      .pm-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.4rem 1.2rem;
+      }
+      .pm-list li {
+        position: relative;
+        padding-left: 1.1rem;
+        color: var(--text);
+        font-size: 0.86rem;
+      }
+      .pm-list li::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+      }
+      .pm-extra {
+        color: var(--text);
+        font-size: 0.86rem;
+        margin-top: 0.7rem;
+      }
+      .pm-extra span {
+        color: var(--gold);
+        font-weight: 600;
+        margin-right: 0.5rem;
+      }
+      .pm-extra span::after {
+        content: ":";
+      }
+      .pm-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .pm-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .pm-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        background: rgba(192, 132, 252, 0.05);
+        border: 1px solid rgba(192, 132, 252, 0.15);
+        border-radius: 12px;
+        padding: 0.7rem 1rem;
+      }
+      .pm-link-info {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+      .pm-link-label {
+        font-size: 0.82rem;
+        font-weight: 600;
+      }
+      .pm-link-url {
+        font-size: 0.74rem;
+        color: var(--muted);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .pm-visit {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        background: linear-gradient(135deg, var(--accent), #a855f7);
+        color: #fff;
+        font-size: 0.78rem;
+        font-weight: 600;
+        padding: 0.45rem 1rem;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: transform 0.25s, box-shadow 0.25s;
+      }
+      .pm-visit:hover {
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(192, 132, 252, 0.35);
+      }
+      .pm-soon {
+        flex-shrink: 0;
+        color: var(--muted);
+        font-size: 0.76rem;
+        border: 1px dashed var(--border);
+        border-radius: 50px;
+        padding: 0.35rem 0.9rem;
+      }
+      @media (max-width: 576px) {
+        .pm-list { grid-template-columns: 1fr; }
+        .pm-content { padding: 1.4rem 1.2rem 1.6rem; }
+        .pm-link { flex-direction: column; align-items: flex-start; }
+      }
+
       /* ── EDUCATION ── */
       #education {
         background: var(--dark);
@@ -2775,182 +3048,7 @@
           <h2 class="section-title">Featured Projects</h2>
           <div class="section-divider mx-auto"></div>
         </div>
-        <div class="row g-4">
-          <div class="col-md-6 col-lg-4 reveal delay-1">
-            <div class="project-card">
-              <div class="project-top">
-                <div class="project-icon">🏛️</div>
-                <span class="project-index">01</span>
-              </div>
-              <div class="project-name">E-office</div>
-              <div class="project-type">Government Digital Office System</div>
-              <p class="project-desc">Digital office software for Kathmandu Metropolitan City, moving paperwork online.</p>
-              <ul class="project-features">
-                <li>Reports, invoices and document management</li>
-                <li>Register and dispatch books</li>
-                <li>PDF export and official formats</li>
-              </ul>
-              <div class="project-tags">
-                <span class="proj-tag">Laravel</span><span class="proj-tag">PostgreSQL</span><span class="proj-tag">PDF Export</span><span class="proj-tag">CMS</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 reveal delay-2">
-            <div class="project-card">
-              <div class="project-top">
-                <div class="project-icon">🧮</div>
-                <span class="project-index">02</span>
-              </div>
-              <div class="project-name">Scrambled Maths</div>
-              <div class="project-type">Kids Maths Game with Parental Controls</div>
-              <p class="project-desc">Kids' maths game with rewards and streaks, plus parental controls and subscriptions.</p>
-              <ul class="project-features">
-                <li>Balloon, Speed and Points games</li>
-                <li>Time limits and game restrictions</li>
-                <li>Stripe and in-app subscriptions</li>
-              </ul>
-              <div class="project-tags">
-                <span class="proj-tag">Laravel</span><span class="proj-tag">Sanctum</span><span class="proj-tag">Stripe</span><span class="proj-tag">REST API</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 reveal delay-3">
-            <div class="project-card">
-              <div class="project-top">
-                <div class="project-icon">💪</div>
-                <span class="project-index">03</span>
-              </div>
-              <div class="project-name">Empowered Man</div>
-              <div class="project-type">Self-Development App for Men</div>
-              <p class="project-desc">Self-improvement app with courses, goals, habit tracking, journals and a community.</p>
-              <ul class="project-features">
-                <li>Courses, goals and habit tracker</li>
-                <li>Assessments with power score</li>
-                <li>Community posts and Agora chat</li>
-              </ul>
-              <div class="project-tags">
-                <span class="proj-tag">Laravel</span><span class="proj-tag">Agora</span><span class="proj-tag">Firebase</span><span class="proj-tag">RESTful API</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 reveal delay-1">
-            <div class="project-card">
-              <div class="project-top">
-                <div class="project-icon">🛒</div>
-                <span class="project-index">04</span>
-              </div>
-              <div class="project-name">Grocery Go</div>
-              <div class="project-type">Grocery Shopping App</div>
-              <p class="project-desc">Grocery app with shopping lists, product search and a savings tracker, plus admin panel.</p>
-              <ul class="project-features">
-                <li>Lists, favourites and store locations</li>
-                <li>Promo codes and push notifications</li>
-                <li>Stripe and in-app subscriptions</li>
-              </ul>
-              <div class="project-tags">
-                <span class="proj-tag">Laravel</span><span class="proj-tag">Stripe</span><span class="proj-tag">Firebase</span><span class="proj-tag">MySQL</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 reveal delay-2">
-            <div class="project-card">
-              <div class="project-top">
-                <div class="project-icon">🤝</div>
-                <span class="project-index">05</span>
-              </div>
-              <div class="project-name">Borrowed</div>
-              <div class="project-type">Peer-to-Peer Rental Marketplace</div>
-              <p class="project-desc">Airbnb-style marketplace to list items, rent from others and pay securely.</p>
-              <ul class="project-features">
-                <li>Rental requests and Stripe payments</li>
-                <li>Reviews, ID verification, disputes</li>
-                <li>Admin: analytics, users and listings</li>
-              </ul>
-              <div class="project-tags">
-                <span class="proj-tag">Laravel</span><span class="proj-tag">Inertia.js</span><span class="proj-tag">React</span><span class="proj-tag">Stripe</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 reveal delay-3">
-            <div class="project-card">
-              <div class="project-top">
-                <div class="project-icon">🏋️</div>
-                <span class="project-index">06</span>
-              </div>
-              <div class="project-name">FitFutures</div>
-              <div class="project-type">School Wellbeing & Fitness Platform</div>
-              <p class="project-desc">Wellbeing and fitness learning platform with separate Admin, School and Student logins.</p>
-              <ul class="project-features">
-                <li>Lessons, quizzes, tasks and journal</li>
-                <li>School tools for staff and students</li>
-                <li>Firebase push notifications</li>
-              </ul>
-              <div class="project-tags">
-                <span class="proj-tag">Laravel</span><span class="proj-tag">Firebase</span><span class="proj-tag">AWS S3</span><span class="proj-tag">Spatie</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 reveal delay-1">
-            <div class="project-card">
-              <div class="project-top">
-                <div class="project-icon">🐣</div>
-                <span class="project-index">07</span>
-              </div>
-              <div class="project-name">Check In Chick</div>
-              <div class="project-type">Baby & Parent Tracker</div>
-              <p class="project-desc">Parenting companion for feeds, nappies and routines, with reminders, reports and chat.</p>
-              <ul class="project-features">
-                <li>Feeding, nappy records and alarms</li>
-                <li>Q&A onboarding and Agora chat</li>
-                <li>Admin: users, FAQs and inbox</li>
-              </ul>
-              <div class="project-tags">
-                <span class="proj-tag">Laravel</span><span class="proj-tag">Vue.js</span><span class="proj-tag">Agora</span><span class="proj-tag">Firebase</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 reveal delay-2">
-            <div class="project-card">
-              <div class="project-top">
-                <div class="project-icon">📡</div>
-                <span class="project-index">08</span>
-              </div>
-              <div class="project-name">NT Vacancy</div>
-              <div class="project-type">Recruitment Management System</div>
-              <p class="project-desc">Vacancy and applicant system for Nepal Telecom that automates the hiring workflow.</p>
-              <ul class="project-features">
-                <li>Reports and applicant labels</li>
-                <li>Chunked bulk emails</li>
-                <li>Auto-generated PDF admit cards</li>
-              </ul>
-              <div class="project-tags">
-                <span class="proj-tag">Laravel</span><span class="proj-tag">MySQL</span><span class="proj-tag">SMTP</span><span class="proj-tag">PDF</span>
-              </div>
-            </div>
-          </div>
-
-
-
-          <div class="col-md-6 col-lg-4 reveal delay-3">
-            <div class="project-card">
-              <div class="project-top">
-                <div class="project-icon">🏫</div>
-                <span class="project-index">09</span>
-              </div>
-              <div class="project-name">SMS — School Management</div>
-              <div class="project-type">School Administration System</div>
-              <p class="project-desc">School management for administrators, teachers, students and parents.</p>
-              <ul class="project-features">
-                <li>Role-based dashboards</li>
-                <li>Assignments, attendance and grades</li>
-                <li>Report cards and exports</li>
-              </ul>
-              <div class="project-tags">
-                <span class="proj-tag">Laravel</span><span class="proj-tag">MySQL</span><span class="proj-tag">RBAC</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="row g-4" id="projectGrid"></div>
       </div>
     </section>
 
@@ -3193,6 +3291,213 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Project detail modal -->
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="modal-body p-0" id="projectModalBody"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PROJECT DATA + RENDER (cards + detail modal) ── -->
+    <script>
+      const PROJECTS = [
+        {
+          slug: "eoffice",
+          name: "E-Office",
+          icon: "🏛️",
+          type: "Government Digital Office System",
+          short: "Paperless office for Kathmandu Metropolitan City, with approvals and digital signatures.",
+          desc: "A paperless office for Kathmandu Metropolitan City that moves paperwork online. It covers digital files, register and dispatch books, multi-step approval workflows, and digital signatures for secure signing and verification. Access is authenticated per role. It also produces reports, invoices and document management, with PDF export in official formats.",
+          features: ["Document management", "Register and dispatch books", "Approval workflows", "Digital signatures", "PDF export"],
+          tech: ["Laravel", "PostgreSQL", "PDF Export", "CMS"],
+          links: [{ label: "Admin", url: "https://eoffice.kathmandu.gov.np/eoadmin" }],
+        },
+        {
+          slug: "empoweredman",
+          name: "Empowered Man",
+          icon: "💪",
+          type: "Self-Growth & Coaching Platform",
+          short: "Courses, journals, goals and habits with a Power Score and a live community.",
+          desc: "A personal development platform with courses, journals, reflections, goal tracking and daily habits. A “Power Score” assessment and levels keep users engaged, and a community with groups, posts and live chat adds support. The admin CMS manages course content, assessments, users and broadcasts.",
+          features: ["Courses", "Journals and reflections", "Goals and habits", "Power Score levels", "Community and live chat"],
+          tech: ["Laravel 12", "Livewire", "JWT", "Spatie", "Firebase", "Chat", "Reverb/Pusher", "FFmpeg"],
+          links: [{ label: "Login", url: "https://app.elitebusinessman.com/login" }],
+        },
+        {
+          slug: "scrambledmgs",
+          name: "Scrambled Maths",
+          icon: "🧮",
+          type: "Discover the Joy of Learning Maths!",
+          short: "Fun, interactive maths games with rewards, streaks and parental controls.",
+          desc: "Fun, interactive maths games where kids build skills with friendly characters. Let’s make maths an adventure! Children play three game modes and practise five types of operation, earning points, streaks and rewards. Parents control PINs, time limits and restrictions, and can create family groups. Subscriptions are handled through Stripe, and the admin panel manages users, plans and support.",
+          features: [],
+          extras: [
+            ["Games", "Point Game, Speed Game, Balloon Game"],
+            ["Operations", "Addition, Subtraction, Multiplication, Division, Random"],
+          ],
+          tech: ["Laravel", "Livewire", "Sanctum", "Stripe Cashier", "ClickSend SMS", "Firebase", "Spatie"],
+          links: [{ label: "Website", url: "https://scrambledmgs.com/" }],
+        },
+        {
+          slug: "grocery-go",
+          name: "Grocery Go",
+          icon: "🛒",
+          type: "Smart Grocery List & Savings App",
+          short: "Compare store prices, build smart lists and track your monthly savings.",
+          desc: "A grocery shopping app that helps users spend less. Users get up-to-date prices and compare them across different stores to find the best deal. Smart lists keep shopping organised, and the savings tracker shows how much they save each month. Users can also search by category and dietary needs, find nearby stores and redeem promo codes. Admins manage products, store prices, promotions, users and push notifications from the CMS.",
+          features: ["Up-to-date prices", "Price comparison across stores", "Smart lists", "Savings tracker", "Promo codes and subscriptions"],
+          tech: ["Laravel 12", "JWT", "Spatie", "Stripe", "ClickSend SMS", "Firebase", "AWS S3"],
+          links: [
+            { label: "Website", url: "https://www.grocerygo.au/" },
+            { label: "Admin side (CMS)", url: "http://13.238.66.220/" },
+          ],
+        },
+        {
+          slug: "borrowed",
+          name: "Borrowed",
+          icon: "🤝",
+          type: "Peer-to-Peer Rental Marketplace",
+          short: "Marketplace where people rent items to each other, with secure payments.",
+          desc: "A marketplace where people rent items to each other. Owners create listings through a step-by-step wizard, and renters browse and send rental requests, which owners accept as bookings. Stripe handles payments and payouts. Users verify their identity, leave reviews, report listings and open disputes. An admin CMS manages bookings, listings, payment analytics and moderation.",
+          features: ["Listing wizard", "Rental requests and bookings", "Stripe payments", "ID verification", "Reviews and disputes"],
+          tech: ["Laravel 13", "Inertia.js", "React", "TypeScript", "Sanctum and JWT", "Stripe", "ClickSend SMS", "Firebase", "Spatie", "AWS S3"],
+          links: [{ label: "Admin side (CMS)", url: "http://54.252.109.73/" }],
+        },
+        {
+          slug: "fitfutures",
+          name: "FitFutures",
+          icon: "🏋️",
+          type: "Empowering Students Through Movement & Mindset",
+          short: "School and Student portals for courses, quizzes and journals on wellbeing.",
+          desc: "A dynamic program designed to build confidence, resilience and physical strength in students. Separate School and Student portals let students learn through courses, lessons and quizzes, write journals and complete tasks. Schools manage their students, staff and resources, and an admin CMS controls all the content.",
+          features: ["Courses, lessons and quizzes", "Student journals", "School portal", "Admin CMS"],
+          extras: [["Our pillars", "Mental Health, Sleep, Nutrition, Physical Activity"]],
+          tech: ["Laravel 12", "Livewire", "Spatie", "Firebase", "Pusher/Echo", "CSV import and export"],
+          links: [
+            { label: "User side (Student and School portals)", url: "http://13.211.7.125/" },
+            { label: "Admin side (CMS)", url: "http://54.66.114.47/" },
+          ],
+        },
+        {
+          slug: "ntvacancy",
+          name: "NT Vacancy",
+          icon: "📡",
+          type: "Recruitment Management System",
+          short: "Vacancy and applicant system for Nepal Telecom that automates hiring.",
+          desc: "A vacancy and applicant system for Nepal Telecom that automates the hiring workflow. Staff can run reports and label applicants, send bulk emails in chunks, and the system generates PDF admit cards automatically.",
+          features: ["Reports and applicant labels", "Chunked bulk emails", "Auto-generated PDF admit cards"],
+          tech: ["Laravel", "MySQL", "SMTP", "PDF"],
+          links: [{ label: "Website", url: "https://recruit.ntc.net.np/" }],
+        },
+        {
+          slug: "checkinchick",
+          name: "Check In Chick",
+          icon: "🐣",
+          type: "Parenting & Baby Care Companion",
+          short: "Helps new parents track feeds, nappies, reminders and daily baby care.",
+          desc: "A platform that helps new parents track their baby’s daily care. Parents log feed sessions and nappy changes, set alarms and reminders, and read parenting resources. Onboarding questions personalise the experience, and chat and notifications keep parents connected. An admin CMS manages users, content and support.",
+          features: ["Feed and nappy tracking", "Alarms and reminders", "Resources", "Onboarding questions", "Chat"],
+          tech: ["Laravel 12", "Livewire", "JWT", "Firebase", "Agora", "Spatie", "AWS S3"],
+          links: [{ label: "User side", url: "http://3.104.77.174/" }],
+        },
+        {
+          slug: "school-sms",
+          name: "SMS — School Management",
+          icon: "🏫",
+          type: "School Management System",
+          short: "Role-based school system for admins, teachers, students and parents.",
+          desc: "A school administration system for administrators, teachers, students and parents. Each role gets its own dashboard and access, so everyone sees only what they need. Teachers manage assignments, attendance and grades, and the system produces report cards and exports.",
+          features: ["Role-based dashboards", "Assignments, attendance and grades", "Report cards and exports"],
+          tech: ["Laravel", "MySQL", "RBAC"],
+          links: [{ label: "Link", url: "" }],
+        },
+      ];
+
+      // Image from images/projects/<slug>.(webp|png|jpg|jpeg); falls back to the project name.
+      const IMG_EXTS = ["webp", "png", "jpg", "jpeg"];
+      const esc = (t) =>
+        String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+      function thumbHTML(p, i) {
+        return (
+          '<div class="proj-thumb hue-' + (i % 4) + '" data-slug="' + p.slug + '">' +
+          '<div class="thumb-fallback"><span class="thumb-icon">' + p.icon + "</span><span class=\"thumb-name\">" + esc(p.name) + "</span></div>" +
+          '<img alt="' + esc(p.name) + ' preview" hidden />' +
+          "</div>"
+        );
+      }
+      function loadThumb(box) {
+        const img = box.querySelector("img");
+        if (!img || img.dataset.started) return;
+        img.dataset.started = "1";
+        let k = 0;
+        const next = () => {
+          if (k >= IMG_EXTS.length) return;
+          img.src = "images/projects/" + box.dataset.slug + "." + IMG_EXTS[k++];
+        };
+        img.onload = () => {
+          img.hidden = false;
+          box.classList.add("has-img");
+        };
+        img.onerror = next;
+        next();
+      }
+
+      const grid = document.getElementById("projectGrid");
+      grid.innerHTML = PROJECTS.map(
+        (p, i) =>
+          '<div class="col-md-6 col-lg-4 reveal delay-' + ((i % 3) + 1) + '">' +
+          '<div class="project-card">' +
+          thumbHTML(p, i) +
+          '<span class="project-index">' + String(i + 1).padStart(2, "0") + "</span>" +
+          '<div class="project-body">' +
+          '<div class="project-name">' + esc(p.name) + "</div>" +
+          '<div class="project-type">' + esc(p.type) + "</div>" +
+          '<button type="button" class="project-more" data-i="' + i + '">View more <i class="fas fa-arrow-right"></i></button>' +
+          "</div></div></div>"
+      ).join("");
+      grid.querySelectorAll(".proj-thumb").forEach(loadThumb);
+
+      // Detail modal
+      const modalEl = document.getElementById("projectModal");
+      const modalBody = document.getElementById("projectModalBody");
+      const projModal = new bootstrap.Modal(modalEl);
+      function linkRow(l) {
+        return l.url
+          ? '<div class="pm-link"><div class="pm-link-info"><span class="pm-link-label">' + esc(l.label) + '</span><span class="pm-link-url">' + esc(l.url) + "</span></div>" +
+              '<a class="pm-visit" href="' + esc(l.url) + '" target="_blank" rel="noopener">Visit site <i class="fas fa-arrow-up-right-from-square"></i></a></div>'
+          : '<div class="pm-link"><div class="pm-link-info"><span class="pm-link-label">' + esc(l.label) + '</span></div><span class="pm-soon">To be added</span></div>';
+      }
+      function openProject(i) {
+        const p = PROJECTS[i];
+        const feats = p.features.length
+          ? '<h6 class="pm-h">Key features</h6><ul class="pm-list">' + p.features.map((f) => "<li>" + esc(f) + "</li>").join("") + "</ul>"
+          : "";
+        const extras = (p.extras || [])
+          .map((e) => '<div class="pm-extra"><span>' + esc(e[0]) + "</span>" + esc(e[1]) + "</div>")
+          .join("");
+        modalBody.innerHTML =
+          thumbHTML(p, i).replace("proj-thumb", "proj-thumb pm-thumb") +
+          '<div class="pm-content">' +
+          '<div class="pm-type">' + esc(p.type) + "</div>" +
+          '<h3 class="pm-title" id="projectModalTitle">' + esc(p.name) + "</h3>" +
+          '<p class="pm-desc">' + esc(p.desc) + "</p>" +
+          feats + extras +
+          '<h6 class="pm-h">Tech stack</h6><div class="pm-tags">' + p.tech.map((t) => '<span class="proj-tag">' + esc(t) + "</span>").join("") + "</div>" +
+          '<h6 class="pm-h">Links</h6><div class="pm-links">' + p.links.map(linkRow).join("") + "</div>" +
+          "</div>";
+        const box = modalBody.querySelector(".proj-thumb");
+        loadThumb(box);
+        projModal.show();
+      }
+      grid.addEventListener("click", (e) => {
+        const b = e.target.closest(".project-more");
+        if (b) openProject(+b.dataset.i);
+      });
+    </script>
+
     <script>
       // ── Smooth anchor scroll ──
       document.querySelectorAll('a[href^="#"]').forEach((a) => {
