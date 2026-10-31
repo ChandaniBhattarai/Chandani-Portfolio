@@ -1511,6 +1511,40 @@
         font-weight: 700;
         margin-bottom: 0.75rem;
       }
+      .project-pager {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 2.5rem;
+      }
+      .pg-btn {
+        min-width: 2.5rem;
+        height: 2.5rem;
+        padding: 0 0.75rem;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background: var(--card);
+        color: var(--muted);
+        font-weight: 600;
+        transition: all 0.2s;
+      }
+      .pg-btn:hover:not(:disabled),
+      .pg-btn.active {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+      .pg-btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+      .proj-badge {
+        color: var(--gold);
+        font-family: inherit;
+        font-size: 0.7em;
+        font-weight: 600;
+        white-space: nowrap;
+      }
       .project-desc {
         color: var(--muted);
         font-size: 0.85rem;
@@ -2526,7 +2560,7 @@
               >
                 <div class="stat">
                   <div class="stat-num">
-                    <span class="count-up" data-target="2">0</span>+
+                    <span class="count-up" data-target="3">0</span>+
                   </div>
                   <div class="stat-label">Years Building</div>
                 </div>
@@ -2665,7 +2699,7 @@
         <!-- Stats strip -->
         <div class="about-stats-strip mt-5 reveal">
           <div class="astat">
-            <span class="astat-num count-up" data-target="2">0</span>+
+            <span class="astat-num count-up" data-target="3">0</span>+
             <div class="astat-label">Years Experience</div>
           </div>
           <div class="astat">
@@ -2824,7 +2858,7 @@
                   line-height: 1.7;
                 "
               >
-                2+ years of hands-on experience building production-grade web
+                3+ years of hands-on experience building production-grade web
                 applications across diverse industries.
               </p>
               <!-- Mini timeline legend -->
@@ -3024,10 +3058,77 @@
                   <div class="exp-techs">
                     <span class="exp-tech">Laravel</span>
                     <span class="exp-tech">PostgreSQL</span>
+                    <span class="exp-tech">MySQL</span>
                     <span class="exp-tech">Khalti</span>
                     <span class="exp-tech">eSewa</span>
                     <span class="exp-tech">RESTful API</span>
                     <span class="exp-tech">ClickUp</span>
+                    <span class="exp-tech">Git</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Job 3 (Internship) -->
+              <div class="timeline-item reveal delay-3">
+                <div class="timeline-dot teal"></div>
+                <div class="exp-card teal-card">
+                  <div class="exp-header">
+                    <div class="exp-logo teal-logo">🎓</div>
+                    <div class="exp-meta">
+                      <div class="exp-company">Shangrila Informatics</div>
+                      <div class="exp-role teal">Intern – PHP &amp; Laravel</div>
+                      <div class="exp-badges">
+                        <span
+                          class="exp-badge badge-duration"
+                          style="
+                            color: var(--teal);
+                            border-color: rgba(45, 212, 191, 0.25);
+                            background: rgba(45, 212, 191, 0.1);
+                          "
+                          ><i class="fas fa-calendar-alt"></i> March – September
+                          2023</span
+                        >
+                        <span
+                          class="exp-badge badge-type"
+                          style="
+                            color: var(--teal);
+                            border-color: rgba(45, 212, 191, 0.2);
+                            background: rgba(45, 212, 191, 0.08);
+                          "
+                          ><i class="fas fa-briefcase"></i> Internship</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <ul class="exp-achievements">
+                    <li>
+                      Built CRUD-based web applications using PHP and the
+                      Laravel framework.
+                    </li>
+                    <li>
+                      Worked with Laravel routing, controllers, Blade views and
+                      Eloquent models to create and manage records.
+                    </li>
+                    <li>
+                      Designed MySQL database tables and migrations, and added
+                      form validation for reliable data entry.
+                    </li>
+                    <li>
+                      Built responsive pages with HTML, CSS, Bootstrap and
+                      JavaScript.
+                    </li>
+                    <li>
+                      Learned team workflows, code reviews and Git version
+                      control while contributing to live projects.
+                    </li>
+                  </ul>
+                  <div class="exp-techs">
+                    <span class="exp-tech">PHP</span>
+                    <span class="exp-tech">Laravel</span>
+                    <span class="exp-tech">MySQL</span>
+                    <span class="exp-tech">PostgreSQL</span>
+                    <span class="exp-tech">Bootstrap</span>
+                    <span class="exp-tech">JavaScript</span>
                     <span class="exp-tech">Git</span>
                   </div>
                 </div>
@@ -3049,6 +3150,7 @@
           <div class="section-divider mx-auto"></div>
         </div>
         <div class="row g-4" id="projectGrid"></div>
+        <div class="project-pager" id="projectPager"></div>
       </div>
     </section>
 
@@ -3316,17 +3418,6 @@
           links: [{ label: "Admin", url: "https://eoffice.kathmandu.gov.np/eoadmin" }],
         },
         {
-          slug: "empoweredman",
-          name: "Empowered Man",
-          icon: "💪",
-          type: "Self-Growth & Coaching Platform",
-          short: "Courses, journals, goals and habits with a Power Score and a live community.",
-          desc: "A personal development platform with courses, journals, reflections, goal tracking and daily habits. A “Power Score” assessment and levels keep users engaged, and a community with groups, posts and live chat adds support. The admin CMS manages course content, assessments, users and broadcasts.",
-          features: ["Courses", "Journals and reflections", "Goals and habits", "Power Score levels", "Community and live chat"],
-          tech: ["Laravel 12", "Livewire", "JWT", "Spatie", "Firebase", "Chat", "Reverb/Pusher", "FFmpeg"],
-          links: [{ label: "Login", url: "https://app.elitebusinessman.com/login" }],
-        },
-        {
           slug: "scrambledmgs",
           name: "Scrambled Maths",
           icon: "🧮",
@@ -3340,6 +3431,29 @@
           ],
           tech: ["Laravel", "Livewire", "Sanctum", "Stripe Cashier", "ClickSend SMS", "Firebase", "Spatie"],
           links: [{ label: "Website", url: "https://scrambledmgs.com/" }],
+        },
+        {
+          slug: "yosemitefroyo",
+          name: "Yosemite Froyo",
+          badge: "Freelance",
+          icon: "🍦",
+          type: "Frozen Yogurt Shop Website",
+          short: "Public site with menu, blog and careers, plus an admin panel to manage it all.",
+          desc: "A website for Yosemite Froyo, a frozen yogurt, crystal boba and smoothie shop. Visitors browse the menu, read blog posts and events, and apply for jobs through a career form. Staff sign in to an admin panel to manage products, blog posts, employees and job applications, and applicants receive email confirmations.",
+          features: ["Product menu by category", "Blog and events with galleries", "Career applications with email notifications", "Job positions, skills and experience settings", "Employee records", "Secure admin panel"],
+          tech: ["Laravel 12", "PHP", "Blade", "MySQL", "Vite", "Mail notifications"],
+          links: [{ label: "Website", url: "https://yosemitefroyo.com/" }],
+        },
+        {
+          slug: "empoweredman",
+          name: "Empowered Man",
+          icon: "💪",
+          type: "Self-Growth & Coaching Platform",
+          short: "Courses, journals, goals and habits with a Power Score and a live community.",
+          desc: "A personal development platform with courses, journals, reflections, goal tracking and daily habits. A “Power Score” assessment and levels keep users engaged, and a community with groups, posts and live chat adds support. The admin CMS manages course content, assessments, users and broadcasts.",
+          features: ["Courses", "Journals and reflections", "Goals and habits", "Power Score levels", "Community and live chat"],
+          tech: ["Laravel 12", "Livewire", "JWT", "Spatie", "Firebase", "Chat", "Reverb/Pusher", "FFmpeg"],
+          links: [{ label: "Login", url: "https://app.elitebusinessman.com/login" }],
         },
         {
           slug: "grocery-go",
@@ -3420,6 +3534,7 @@
       const IMG_EXTS = ["webp", "png", "jpg", "jpeg"];
       const esc = (t) =>
         String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+      const badgeHTML = (p) => (p.badge ? ' <span class="proj-badge">(' + esc(p.badge) + ")</span>" : "");
       function thumbHTML(p, i) {
         return (
           '<div class="proj-thumb hue-' + (i % 4) + '" data-slug="' + p.slug + '">' +
@@ -3446,19 +3561,42 @@
       }
 
       const grid = document.getElementById("projectGrid");
-      grid.innerHTML = PROJECTS.map(
-        (p, i) =>
-          '<div class="col-md-6 col-lg-4 reveal delay-' + ((i % 3) + 1) + '">' +
+      const PER_PAGE = 9;
+      const pager = document.getElementById("projectPager");
+      let page = 1;
+      function renderProjects() {
+        const pages = Math.ceil(PROJECTS.length / PER_PAGE);
+        const start = (page - 1) * PER_PAGE;
+        grid.innerHTML = PROJECTS.slice(start, start + PER_PAGE).map((p, n) => projectCol(p, start + n, n)).join("");
+        grid.querySelectorAll(".proj-thumb").forEach(loadThumb);
+        grid.querySelectorAll(".reveal").forEach((el) => el.classList.add("visible"));
+        pager.innerHTML =
+          pages < 2
+            ? ""
+            : '<button type="button" class="pg-btn" data-page="' + (page - 1) + '"' + (page === 1 ? " disabled" : "") + ' aria-label="Previous page"><i class="fas fa-chevron-left"></i></button>' +
+              Array.from({ length: pages }, (_, k) =>
+                '<button type="button" class="pg-btn' + (k + 1 === page ? " active" : "") + '" data-page="' + (k + 1) + '">' + (k + 1) + "</button>"
+              ).join("") +
+              '<button type="button" class="pg-btn" data-page="' + (page + 1) + '"' + (page === pages ? " disabled" : "") + ' aria-label="Next page"><i class="fas fa-chevron-right"></i></button>';
+      }
+      pager.addEventListener("click", (e) => {
+        const b = e.target.closest(".pg-btn");
+        if (!b || b.disabled) return;
+        page = +b.dataset.page;
+        renderProjects();
+        document.getElementById("projects").scrollIntoView({ behavior: "smooth" });
+      });
+      const projectCol = (p, i, n) =>
+          '<div class="col-md-6 col-lg-4 reveal delay-' + ((n % 3) + 1) + '">' +
           '<div class="project-card">' +
           thumbHTML(p, i) +
           '<span class="project-index">' + String(i + 1).padStart(2, "0") + "</span>" +
           '<div class="project-body">' +
-          '<div class="project-name">' + esc(p.name) + "</div>" +
+          '<div class="project-name">' + esc(p.name) + badgeHTML(p) + "</div>" +
           '<div class="project-type">' + esc(p.type) + "</div>" +
           '<button type="button" class="project-more" data-i="' + i + '">View more <i class="fas fa-arrow-right"></i></button>' +
-          "</div></div></div>"
-      ).join("");
-      grid.querySelectorAll(".proj-thumb").forEach(loadThumb);
+          "</div></div></div>";
+      renderProjects();
 
       // Detail modal
       const modalEl = document.getElementById("projectModal");
@@ -3482,7 +3620,7 @@
           thumbHTML(p, i).replace("proj-thumb", "proj-thumb pm-thumb") +
           '<div class="pm-content">' +
           '<div class="pm-type">' + esc(p.type) + "</div>" +
-          '<h3 class="pm-title" id="projectModalTitle">' + esc(p.name) + "</h3>" +
+          '<h3 class="pm-title" id="projectModalTitle">' + esc(p.name) + badgeHTML(p) + "</h3>" +
           '<p class="pm-desc">' + esc(p.desc) + "</p>" +
           feats + extras +
           '<h6 class="pm-h">Tech stack</h6><div class="pm-tags">' + p.tech.map((t) => '<span class="proj-tag">' + esc(t) + "</span>").join("") + "</div>" +
